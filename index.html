@@ -1742,7 +1742,7 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
 </section>
 
 <section class="puzzle-panel" aria-labelledby="puzzleTitle">
-  <div class="puzzle-copy"><div class="eyebrow">DOCUMENT DESCLASSIFICAT</div><h2 id="puzzleTitle">Fragments de l’Operació</h2><p>Cada missió completada i transmesa al CIDS desbloqueja una part de la imatge. L’estat queda guardat en aquest dispositiu.</p><div class="puzzle-progress"><span id="puzzleCount">0</span>/16 fragments recuperats</div></div>
+  <div class="puzzle-copy"><div class="eyebrow">DOCUMENT DESCLASSIFICAT</div><h2 id="puzzleTitle">Credencials de l’Operació</h2><p>Cada missió completada i transmesa al CIDS desbloqueja una part de la imatge. L’estat queda guardat en aquest dispositiu.</p><div class="puzzle-progress"><span id="puzzleCount">0</span>/16 fragments desbloquejats</div></div>
   <div class="puzzle-grid" id="puzzleGrid" aria-label="Puzzle de setze fragments"></div>
 </section>
 
@@ -1814,12 +1814,12 @@ Durant aquesta trobada es produiran els darrers esdeveniments abans de la descla
 <p>El Departament d’Anàlisi ha detectat un quart destí compatible i ha decidit incorporar-lo a la llista:</p><div class="compatible-coordinate">
 <span class="clue">🍷</span><b>///turistes.errats.compartint</b></div>`},
 
-4:{kind:"activity",icon:"🪪",title:"Control de documentació",text:`
-DESCRIPCIÓ: Abans d’autoritzar qualsevol moviment internacional, la Central ha de verificar que la identitat de l’Equip DiA continua operativa i sense incidències.
+4:{kind:"activity",icon:"🪪",title:"Control de documentació",richHtml:`
+<p><b>DESCRIPCIÓ:</b> Abans d’autoritzar qualsevol moviment internacional, la Central ha de verificar que la identitat de l’Equip DiA continua operativa i sense incidències.</p>
+</p><br>
+<p><b>EL REPTE:</b> Comproveu que els dos DNI són vigents durant tot el viatge.</p><br>
 
-EL REPTE: Comproveu que els dos DNI són vigents durant tot el viatge.
-
-L’ACCIÓ: Quan ho hàgiu verificat, feu-vos una selfie conjunta amb el DNI a la boca i envieu-la al canal de WhatsApp del CIDS.
+<p><b>L’ACCIÓ:</b> Quan ho hàgiu verificat, feu-vos una selfie conjunta amb el DNI a la boca i envieu-la al canal de WhatsApp del CIDS.</p><br>
 
 🚨Avís: Qualsevol document caducat pot provocar la suspensió immediata de l’Operació 2209.`,mission:true,puzzle:1},
 
@@ -1837,7 +1837,7 @@ L’ACCIÓ: Fotografieu els dos objectes i envieu les imatges al canal de WhatsA
 6:{kind:"activity",icon:"📍 ",title:"El Quart destí",text:`
 DESCRIPCIÓ: Fa tres dies, el CIDS va incorporar un nou destí a l'expedient de l'Operació 2209.
 
-EL REPTE: A partir de les pistes publicades, quins son els quarte destins possibles?
+EL REPTE: A partir de les pistes publicades, quins son els quatre destins possibles?
 No cal que sigui una resposta conjunta. Si no coincidiu, podeu enviar dues hipòtesis diferents.
 
 L’ACCIÓ: Envieu al canal de WhatsApp del CIDS els noms dels 4 destins seleccionats.
@@ -1860,27 +1860,15 @@ L’ACCIÓ: Envieu la imatge del perfil escollit pel canal de WhatsApp del CIDS.
 🚨Avís: Sigueu clàssics o agosarats. La Central vigila.`,mission:true,puzzle:3},
 
 
-8:{kind:"activity",icon:"🤳",title:"Verificació de l’Equip DiA",text:`
-DESCRIPCIÓ: Els sistemes de reconeixement facial del CIDS han detectat un excés de relaxació entre els membres de l’equip. Cal restablir immediatament el nivell de serietat operativa.
 
-EL REPTE: Feu-vos una selfie conjunta mostrant la vostra expressió més severa, professional i impenetrable.
-
-L’ACCIÓ: Envieu la fotografia al canal de WhatsApp del CIDS perquè el Departament de Seguretat validi les vostres credencials.
-
-🚨Avís: Qualsevol somriure serà considerat una esquerda en el protocol.`,mission:true,puzzle:4},
+8:{kind:"activity",icon:"🛞",title:"Generació de ruta 01",text:`
+DESCRIPCIÓ: Per començar a preparar-vos i involucrar-vos amb el viatge, us proposem el següent repte...
+EL REPTE: Feu una ruta de 6 dies pel primer destí identificat a “destins compatibles” .
+L’ACCIÓ: Envieu la ruta pel canal de WhatsApp del CIDS perquè el Departament de Viatges ho validi.
+🚨Avís: Aquesta ruta ha de ser treballada seriosament, perquè serà parcial o totalment incorporada en cas que sigui el destí final.`,mission:true,puzzle:4},
 
 
-9:{kind:"activity",icon:"🎒",title:"Equip imprescindible",text:`
-DESCRIPCIÓ: La Central sospita que la vostra capacitat d’equipatge pot quedar compromesa per objectes innecessaris i decisions d’última hora.
-
-EL REPTE: Poseu-vos d’acord i determineu les tres coses imprescindibles que no poden faltar a la maleta de l’Equip DiA.
-
-L’ACCIÓ: Envieu la llista definitiva al canal de WhatsApp del CIDS.
-
-🔍 Control posterior: El dia de la revelació, la Central comprovarà si la selecció era encertada o absolutament inútil.`,mission:true,puzzle:5},
-
-
-10:{kind:"activity",icon:"🧪",title:"L’Elixir del Combat",text:`
+9:{kind:"activity",icon:"🧪",title:"L’Elixir del Combat",text:`
 DESCRIPCIÓ: Els membres de l’Equip DiA han de ser immunes a qualsevol substància encoberta. El CIDS requereix un test de resistència immediat. 
 
 EL REPTE: Adquiriu un dels contraverins oficials, feu un brindis d’alta traïció davant la càmera i destruïu la prova bevent-vos-el.
@@ -1889,28 +1877,32 @@ EL REPTE: Adquiriu un dels contraverins oficials, feu un brindis d’alta traïc
 · CONTRAVERÍ 02 - Un glop de whisky escocès de malta 🥃
 · CONTRAVERÍ 03 - Una copa de malvasia volcànica de Lanzarote 🥂
 · CONTRAVERÍ 04 - Un xarrup de limoncello tradicional de la Puglia 🍋
-
-L’ACCIÓ: Adjunteu una prova gràfica del brindis mitjançant l’enllaç de comunicacions.`,mission:true,puzzle:6},
-
-
-11:{kind:"activity",icon:"🎙️",title:"Pronòstic emocional",text:`
-DESCRIPCIÓ: El Departament de Prospectiva necessita anticipar quin moment del viatge pot generar el nivell més alt d’entusiasme entre els membres de l’equip.
-
-EL REPTE: Cadascú ha d’explicar quin creu que serà el millor moment del viatge i per què. No cal que coincidiu.
-
-L’ACCIÓ: Graveu una nota de veu de menys de vint segons i envieu-la al canal de WhatsApp del CIDS.
-
-🚨Avís: Les prediccions quedaran arxivades i podran ser utilitzades contra vosaltres al final de l’operació.`,mission:true,puzzle:7},
+L’ACCIÓ: Adjunteu una prova gràfica del brindis mitjançant l’enllaç de comunicacions.`,mission:true,puzle:5},
 
 
-12:{kind:"activity",icon:"🗣️",title:"L’Idioma Encobert",text:`
+
+10:{kind:"activity",icon:" 🛞",title:" Generació de ruta 02",text:`
+DESCRIPCIÓ: Seguint amb la vostra involucració, us proposem ...
+EL REPTE: Feu una ruta de 6 dies pel segon destí identificat a “destins compatibles” 
+L’ACCIÓ: Envieu la ruta pel canal de WhatsApp del CIDS perquè el Departament de Viatges ho validi
+
+🚨Avís: Aquesta ruta ha de ser treballada seriosament, perquè serà parcial o totalment incorporada en cas que sigui el destí final..`,mission:true,puzzle:6},
+
+
+11:{kind:"activity",icon:"🗣️",title:"L’Idioma Encobert",text:`
 DESCRIPCIÓ: Els serveis d'intel·ligència han detectat que els canals de comunicació de l'Operació 2209 estan sota vigilància. Per evitar que la Central sigui identificada, tots els agents han de demostrar que són capaços de modificar la seva manera de parlar i confondre els sistemes de reconeixement de veu.
 
 El REPTE: Enregistreu una nota de veu dient la frase "Salut i força al canut!"  intentant  sonar com un autèntic Highlander escocès, introduir un toc de passione italiana de la Puglia, adoptar l’accent relaxat de Lanzarote o el caire de taverna de La Rioja.
 
 L'ACCIÓ: Envieu la nota de veu al canal de WhatsApp del CIDS.
 
-🚨Avís: La Central valorarà especialment les interpretacions més creatives.`,mission:true,puzzle:8},
+🚨Avís: La Central valorarà especialment les interpretacions més creatives.`,mission:true,puzzle:7},
+12:{kind:"activity",icon:"🎙️🛞",title:" Generació de ruta 03",text:`
+DESCRIPCIÓ: Seguint amb la vostra involucració, us proposem ...
+EL REPTE: Feu una ruta de 6 dies pel tercer destí identificat a “destins compatibles” 
+L’ACCIÓ: Envieu la ruta pel canal de WhatsApp del CIDS perquè el Departament de Viatges ho validi
+
+🚨Avís: Aquesta ruta ha de ser treballada seriosament, perquè serà parcial o totalment incorporada en cas que sigui el destí final..`,mission:true,puzzle:8},
 
 13:{kind:"activity",icon:"🛰️",title:"Reconeixement aeri",text:`
 DESCRIPCIÓ: Un dels satèl·lits del CIDS ha capturat una imatge de la zona on podria trobar-se una futura base operativa. Els analistes han detectat una àrea d’interès, però encara no n’han pogut determinar la localització exacta.
@@ -1925,19 +1917,13 @@ mission:true,puzzle:9},
 
 
 
-14:{kind:"activity",icon:"🎵",title:"Reconeixement Acústic",text:`
-DESCRIPCIÓ: Abans d'infiltrar-se en territori desconegut, tot agent ha d'aprendre a reconèixer-ne l'ambient sonor. El CIDS ha interceptat quatre canals de ràdio relacionats amb els possibles destins de l'Operació 2209.
+14:{kind:"activity",icon:"🎵🛞",title:" Generació de ruta 04",text:`
+DESCRIPCIÓ: Seguint amb la vostra involucració, us proposem ...
+EL REPTE: Feu una ruta de 6 dies pel quart destí identificat a “destins compatibles” 
+L’ACCIÓ: Envieu la ruta pel canal de WhatsApp del CIDS perquè el Departament de Viatges ho validi
 
-EL REPTE: Localitzeu una emissió o una peça musical representativa de cadascun dels quatre canals:
+🚨Avís: Aquesta ruta ha de ser treballada seriosament, perquè serà parcial o totalment incorporada en cas que sigui el destí final..`,mission:true,puzzle:10},
 
-· CANAL CELTA - Gaites escoceses
-· CANAL TARENTELLA - Música tradicional del sud d'itàlia
-· CANAL VOLCÀNIC - Música mística d’estil Jameos del Agua
-· CANAL CANTINA - Cançons de taverna amb ambient popular de La Rioja
-
-L’ACCIÓ:  Envieu al WhatsApp del CIDS un fragment d'uns 10 segons de cadascun dels quatre canals.
-
-🚨Avís: La Central comprovarà que la música forma part de l'ambient de l'operació.`,mission:true,puzzle:10},
 
 
 15:{kind:"activity",icon:"🎵",title:"Banda sonora operativa",text:`
