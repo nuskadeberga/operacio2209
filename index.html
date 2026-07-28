@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#071018">
-<title>Operació 2209 · Calendari de viatge · V73</title>
-<!-- V73: nova alerta gastronòmica del 8 de setembre sobre les opcions de tast de vins als cinc destins -->
+<title>Operació 2209 · Calendari de viatge · V74</title>
+<!-- V74: encàrrecs revisats, respostes individuals per als agents A i D i identitat visual coure -->
 <style>
 :root{
   --bg:#071018;--panel:#0d1923;--panel2:#111f2b;--ink:#edf3f4;--muted:#91a4ad;
@@ -1889,6 +1889,89 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
 }
 </style>
 
+
+<style id="v74-assignment-copper">
+:root{--assignment:#B87333}
+
+/* Encàrrecs: identitat coure diferenciada de les missions */
+.day.assignment .front,
+.day.activity.assignment .front{
+  background:linear-gradient(145deg,rgba(69,48,33,.96),rgba(40,32,27,.96))!important;
+  border-color:rgba(184,115,51,.78)!important;
+  box-shadow:0 12px 28px rgba(0,0,0,.22)!important;
+}
+.day.assignment .number,
+.day.assignment .type,
+.day.assignment.locked:not(.test-enabled) .number,
+.day.assignment.locked:not(.test-enabled) .type{
+  color:var(--assignment)!important;
+}
+.day.assignment.locked:not(.test-enabled) .front{
+  opacity:.58!important;
+  filter:none!important;
+}
+.day.assignment:not(.locked) .door:hover .front,
+.day.assignment.test-enabled .door:hover .front{
+  box-shadow:inset 0 -12px 22px rgba(0,0,0,.12),0 9px 22px rgba(0,0,0,.20),0 0 0 1px rgba(184,115,51,.18)!important;
+}
+
+/* Modal dels encàrrecs */
+.modal-box.is-assignment{border-color:rgba(184,115,51,.72)}
+.modal-box.is-assignment .modal-tag,
+.modal-box.is-assignment .report-mark{color:var(--assignment)}
+.modal-box.is-assignment .report-mark{border-bottom-color:rgba(184,115,51,.34)}
+.modal-box.is-assignment .mission-actions{border-top-color:rgba(184,115,51,.34)}
+.modal-box.is-assignment .mission-primary{
+  border-color:rgba(184,115,51,.72);
+  background:rgba(184,115,51,.15);
+  color:#f0d2b5;
+}
+.modal-box.is-assignment .mission-primary:hover{background:rgba(184,115,51,.25)}
+.modal-box.is-assignment .mission-confirm{
+  border-color:rgba(184,115,51,.38);
+  background:rgba(184,115,51,.08);
+}
+
+/* Línia temporal mòbil */
+.timeline-item.assignment:before{background:rgba(184,115,51,.58)}
+.timeline-item.assignment .timeline-card{
+  background:linear-gradient(145deg,rgba(69,48,33,.68),rgba(38,30,25,.72));
+  border-color:rgba(184,115,51,.28);
+}
+.timeline-item.assignment .timeline-kicker,
+.timeline-item.assignment .timeline-arrow{color:var(--assignment)}
+.timeline-item.assignment.available:before{
+  background:var(--assignment);
+  box-shadow:0 0 0 4px rgba(184,115,51,.14);
+}
+.timeline-item.assignment.available .timeline-card{
+  background:linear-gradient(145deg,rgba(82,54,34,.97),rgba(47,35,27,.97));
+  border-color:rgba(184,115,51,.68);
+  box-shadow:inset 3px 0 0 rgba(184,115,51,.82);
+}
+.timeline-item.assignment.available .timeline-date strong{color:#f0d2b5}
+.timeline-item.assignment.available .timeline-kicker{color:var(--assignment)}
+.timeline-item.assignment.completed .timeline-card{
+  border-color:rgba(143,212,167,.48);
+  box-shadow:inset 3px 0 0 rgba(143,212,167,.72);
+}
+
+/* Dos botons individuals */
+.agent-action-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+.agent-action-grid[hidden]{display:none!important}
+.agent-action-grid .mission-primary{
+  height:100%;
+  min-height:54px;
+}
+@media(max-width:560px){
+  .agent-action-grid{grid-template-columns:1fr}
+}
+</style>
+
 </head>
 <body>
 <div class="shell">
@@ -2033,7 +2116,18 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
     </div>
     <p id="modalText"></p>
     <img id="modalMedia" class="modal-media" alt="Pista visual del CIDS">
-    <div id="missionActions" class="mission-actions" hidden><button id="sendWhatsApp" class="mission-primary" type="button">Copiar missatge i obrir WhatsApp</button><div id="missionConfirm" class="mission-confirm" hidden><p>Has enviat la resposta al grup?</p><div><button id="missionSent" type="button">Sí, missió enviada</button><button id="missionPending" type="button">Encara no</button></div></div><button id="missionReset" class="mission-reset" type="button" hidden>Marcar la missió com a pendent</button></div>
+    <div id="missionActions" class="mission-actions" hidden>
+      <button id="sendWhatsApp" class="mission-primary" type="button">Copiar missatge i obrir WhatsApp</button>
+      <div id="separateMissionActions" class="agent-action-grid" hidden>
+        <button id="sendWhatsAppA" class="mission-primary agent-a" type="button">Agent A · copiar missatge i obrir WhatsApp</button>
+        <button id="sendWhatsAppD" class="mission-primary agent-d" type="button">Agent D · copiar missatge i obrir WhatsApp</button>
+      </div>
+      <div id="missionConfirm" class="mission-confirm" hidden>
+        <p id="missionConfirmQuestion">Has enviat la resposta al grup?</p>
+        <div><button id="missionSent" type="button">Sí, missió enviada</button><button id="missionPending" type="button">Encara no</button></div>
+      </div>
+      <button id="missionReset" class="mission-reset" type="button" hidden>Marcar la missió com a pendent</button>
+    </div>
   </div>
 </div>
 
@@ -2167,8 +2261,8 @@ richHtml:`
   <li>Seguir la ruta o deixar marge per perdre's</li>
 </ul>
 <p>També haureu d'indicar una activitat que us faria especial il·lusió, una situació que preferiríeu evitar i una condició imprescindible perquè el viatge sigui un èxit.</p>
-<br><p><b>L’ACCIÓ:</b> Cada agent enviarà les seves respostes per separat al canal de WhatsApp del CIDS.</p>
-<br>🚨Avís: Queda prohibit pactar les respostes. El CIDS detecta amb facilitat les coincidències sospitosament perfectes.`,mission:true,supplementary:true},
+<br><p><b>L’ACCIÓ:</b> Cada agent enviarà les seves respostes per separat al canal de WhatsApp del CIDS, utilitzant el seu botó individual.</p>
+<br>🚨Avís: Queda prohibit pactar les respostes. El CIDS detecta amb facilitat les coincidències sospitosament perfectes.`,mission:true,supplementary:true,separateReplies:true,agentMessageLabels:{A:"RESPOSTES DE L’AGENT A:",D:"RESPOSTES DE L’AGENT D:"}},
 /* 24 DE AGOST */
 6:{kind:"activity",icon:"📍 ",title:"El Quart destí", richHtml:`
 <p><b>DESCRIPCIÓ:</b>    En un informe anterior, el CIDS va incorporar un nou destí a l'expedient de l'Operació 2209.
@@ -2222,8 +2316,8 @@ richHtml:`
 🚨Avís: Aquesta ruta ha de ser treballada seriosament, perquè serà parcial o totalment incorporada en cas que sigui el destí final.`,mission:true,puzzle:4},
 /* 29 DE AGOST */
 39:{kind:"activity",icon:"🎭",title:"Coartada operativa",richHtml:`
-<p><b>DESCRIPCIÓ:</b> El CIDS considera probable que familiars, amistats o altres persones intentin descobrir què farà l'Equip DiA durant els dies de l'operació.</p>
-<br><p><b>EL REPTE:</b> Graveu un vídeo conjunt de màxim 30 segons explicant què fareu durant aquells dies, sense utilitzar les paraules <b>viatge</b>, <b>vacances</b>, <b>destí</b>, <b>avió</b>, <b>aeroport</b>, <b>illa</b> ni cap nom geogràfic. Tots dos agents haureu de parlar.</p>
+<p><b>DESCRIPCIÓ:</b> El CIDS considera probable que familiars, amistats o altres persones intentin descobrir què farà l'Equip DiA durant els dies de l'operació. Aquest vídeo ha de servir perquè us justifiqueu davant dels familiars, amistats o altres persones.</p>
+<br><p><b>EL REPTE:</b> Graveu un vídeo conjunt de màxim 30 segons explicant què fareu durant aquells dies, sense utilitzar les paraules <b>viatge</b>, <b>vacances</b>, <b>destí</b>, <b>avió</b>, <b>aeroport</b>, <b>cotxe</b>, <b>amics</b>, <b>casament</b> ni cap nom geogràfic. Tots dos agents haureu de parlar.</p>
 <br><p><b>L’ACCIÓ:</b> Envieu una única gravació al canal de WhatsApp del CIDS. Si utilitzeu una paraula prohibida, haureu de començar de nou.</p>
 <br>🚨Avís: La coartada ha de semblar creïble. «No podem explicar-ho perquè és secret» no es considera una explicació suficient.`,mission:true,supplementary:true},
 /* 30 DE AGOST */
@@ -2247,11 +2341,11 @@ richHtml:`
 <br><p><b>L’ACCIÓ:</b> Envieu la ruta pel canal de WhatsApp del CIDS perquè el Departament de Viatges ho validi</p><br>
 🚨Avís: Aquesta ruta ha de ser treballada seriosament, perquè serà parcial o totalment incorporada en cas que sigui el destí final..`,mission:true,puzzle:6},
 /* 02 DE SETEMBRE */
-41:{kind:"activity",icon:"🚧",title:"Activació del pla B",richHtml:`
-<p><b>DESCRIPCIÓ:</b> Una operació també ha d'estar preparada per quan les coses no surten com estava previst. El CIDS planteja una incidència diferent a cada agent.</p>
-<br><p><b>EL REPTE:</b> L'<em>agent A</em> haurà d'explicar què faria si el vol quedés cancel·lat i la nova sortida fos sis hores més tard. L'<em>agent D</em> haurà d'explicar què faria si el vehicle quedés immobilitzat en una carretera secundària amb poca cobertura. Cada resposta tindrà un màxim de cinc passos.</p>
-<br><p><b>L’ACCIÓ:</b> Envieu els dos plans per separat al canal de WhatsApp del CIDS. Després, cada agent podrà afegir una millora al pla de l'altre.</p>
-<br>🚨Avís: «Ja ho solucionarem quan passi» no es considera un pla de contingència.`,mission:true,supplementary:true},
+41:{kind:"activity",icon:"🚧",title:"Activació dels plans alternatius",richHtml:`
+<p><b>DESCRIPCIÓ:</b> Una operació també ha d'estar preparada per afrontar una incidència que afecti tots els sistemes de transport alhora.</p>
+<br><p><b>EL REPTE:</b> S'ha produït una apagada elèctrica general i no funcionen ni trens, ni avions ni vaixells. Davant exactament la mateixa situació, l'<em>agent A</em> haurà de plantejar un <b>pla B</b> i l'<em>agent D</em> haurà de plantejar un <b>pla C</b>.</p>
+<br><p><b>L’ACCIÓ:</b> Cada agent enviarà el seu pla per separat al canal de WhatsApp del CIDS, utilitzant el botó corresponent. No podreu consultar la resposta de l'altre agent fins que tots dos plans hagin estat enviats.</p>
+<br>🚨Avís: El pla C no pot ser una còpia del pla B amb una lletra diferent.`,mission:true,supplementary:true,separateReplies:true,agentMessageLabels:{A:"PLA B DE L’AGENT A:",D:"PLA C DE L’AGENT D:"}},
 /* 03 DE SETEMBRE */
 32:{kind:"activity",icon:"🗺️",title:"Validació logística",richHtml:`
 <p><b>DESCRIPCIÓ:</b> La incorporació tardana d’una cinquena candidatura ha deixat incomplet l’expedient de mobilitat del CIDS.</p>
@@ -2263,7 +2357,8 @@ richHtml:`
 <p><b>DESCRIPCIÓ:</b> La destinació continua classificada. El CIDS vol comprovar si els agents són capaços de preparar-se sense saber exactament quin temps, terreny o situació trobaran.</p>
 <br><p><b>EL REPTE:</b> Cada agent haurà d'escollir cinc objectes imprescindibles. No podeu repetir objectes, no val respondre simplement «roba» o «tecnologia», i la documentació i la roba interior no compten. Un dels deu objectes haurà de ser deliberadament absurd, però l'haureu de defensar com si fos imprescindible.</p>
 <br><p><b>L’ACCIÓ:</b> Col·loqueu els deu objectes junts, feu-ne una fotografia i envieu-la al canal de WhatsApp del CIDS. Afegiu una frase breu explicant per què heu escollit cada objecte.</p>
-<br>🚨Avís: Si la Central no és capaç d'identificar quin és l'objecte absurd, es revisarà la preparació logística de tot l'equip.`,mission:true,supplementary:true},
+<p>Després de revisar la proposta, el CIDS podrà eliminar <b>un objecte de cada agent</b>. Els dos objectes vetats no es podran portar al viatge.</p>
+<br>🚨Avís: El CIDS revisarà la maleta de cada agent en arribar al destí. Si hi apareix un objecte eliminat, s'obrirà un expedient per desobediència logística.`,mission:true,supplementary:true},
 /* 05 DE SETEMBRE */
 12:{kind:"activity",icon:"️🛞",title:"Generació de ruta", richHtml:`
 <p><b>DESCRIPCIÓ:</b>    Seguint amb la vostra involucració, us proposem ...
@@ -2393,13 +2488,13 @@ richHtml:`
 media:"missio-13-reconeixement.webp",
 mission:true,puzzle:9},
 /* 14 DE SETEMBRE */
-43:{kind:"activity",icon:"🧾",title:"Reserves en curs",richHtml:`
+43:{kind:"activity",icon:"🧾",title:"Reserves realitzades",richHtml:`
 <div class="intel-kicker">CENTRAL DE VIATGES · COMUNICACIÓ DE SITUACIÓ</div>
-<p>La Central de Viatges informa que ha començat a executar les instruccions rebudes pel CIDS.</p>
-<p>La destinació ja està decidida i s'han iniciat les gestions relacionades amb el desplaçament principal, l'allotjament, la mobilitat i l'organització general de l'operació.</p>
-<p>Alguns elements encara estan pendents de confirmació, però la decisió principal ja no es modificarà.</p>
+<p>La Central de Viatges informa que ha executat les instruccions rebudes pel CIDS.</p>
+<p>La destinació ja està decidida i les reserves principals relacionades amb el desplaçament, l'allotjament, la mobilitat i l'organització general de l'operació ja han estat realitzades.</p>
+<p>La logística principal queda, per tant, confirmada. Alguns horaris o detalls menors encara es podran ajustar, però la decisió i les reserves no es modificaran.</p>
 <p>Les rutes preparades per l'<em>Equip DiA</em> han estat revisades. Algunes propostes podran aparèixer al programa definitiu, encara que la Central es reserva el dret de canviar horaris, eliminar trajectes o afegir pauses.</p>
-<div class="hint">🔒 <b>Destinació:</b> confirmada · <b>Reserves:</b> en procés · <b>Identitat del destí:</b> classificada.</div>`},
+<div class="hint">🔒 <b>Destinació:</b> confirmada · <b>Reserves:</b> realitzades · <b>Identitat del destí:</b> classificada.</div>`},
 /* 15 DE SETEMBRE */
 17:{kind:"activity",icon:"💼",title:"Suborn a la Central", richHtml:`
 <p><b>DESCRIPCIÓ:</b>    El canal de reserves està controlat per un alt càrrec de la Central —l’organitzador de la missió— que posseeix els codis necessaris per agrupar els seients. Les defenses digitals són impenetrables: només queda la negociació directa.
@@ -2439,9 +2534,9 @@ richHtml:`
 /* 18 DE SETEMBRE */
 44:{kind:"activity",icon:"✅",title:"Preparació final",richHtml:`
 <p><b>DESCRIPCIÓ:</b> L'Operació 2209 entra en la fase final. La destinació està decidida i la revelació és imminent. El CIDS necessita comprovar que els agents saben preparar una sortida sense oblidar cap element important.</p>
-<br><p><b>EL REPTE:</b> Creeu conjuntament una llista de vuit comprovacions: documentació, reserves i horaris, equipatge, diners i targetes, telèfons i carregadors, medicació o material personal, casa preparada abans de marxar i trasllat fins al punt de sortida. També haureu d'indicar una tasca per fer 48 hores abans, una per fer la nit anterior i una per comprovar just abans de sortir.</p>
-<br><p><b>L’ACCIÓ:</b> Envieu una única llista conjunta al canal de WhatsApp del CIDS. L'<em>agent D</em> també haurà de proposar una provisió d'emergència i l'<em>agent A</em> haurà d'autoritzar-la.</p>
-<br>🚨Avís: «Comprovar que no ens deixem res» no es considera una comprovació concreta.`,mission:true,supplementary:true},
+<br><p><b>EL REPTE:</b> Creeu conjuntament la vostra pròpia llista final de comprovacions. El CIDS no facilitarà categories ni exemples: haureu d'identificar tot allò que cal revisar, preparar o deixar resolt abans de sortir. Organitzeu la llista en tres moments: <b>48 hores abans</b>, <b>la nit anterior</b> i <b>just abans de marxar</b>.</p>
+<br><p><b>L’ACCIÓ:</b> Envieu una única llista conjunta al canal de WhatsApp del CIDS. Al final, cada agent haurà d'afegir una cosa que creu que l'altre podria oblidar i una mesura concreta per evitar-ho.</p>
+<br>🚨Avís: «Tenir-ho tot preparat» no es considera una comprovació concreta.`,mission:true,supplementary:true},
 /* 19 DE SETEMBRE */
 19:{kind:"activity",icon:"🎥",title:"Autorització per viatjar", richHtml:`
 <p><b>DESCRIPCIÓ:</b> La Central necessita una última prova audiovisual que confirmi que els dos membres de l’<em>Equip DiA</em> estan preparats per operar en qualsevol dels cinc escenaris que han estat sotmesos a estudi.
@@ -2555,7 +2650,17 @@ const TEST_MODE_KEY="cids2209_testMode";
 const SIM_DATE_KEY="cids2209_simDate";
 const SIM_TIME_KEY="cids2209_simTime";
 const modal=document.getElementById("modal");
-const modalMedia=document.getElementById("modalMedia"),missionActions=document.getElementById("missionActions"),sendWhatsApp=document.getElementById("sendWhatsApp"),missionConfirm=document.getElementById("missionConfirm"),missionSent=document.getElementById("missionSent"),missionPending=document.getElementById("missionPending"),missionReset=document.getElementById("missionReset");
+const modalMedia=document.getElementById("modalMedia"),
+missionActions=document.getElementById("missionActions"),
+sendWhatsApp=document.getElementById("sendWhatsApp"),
+separateMissionActions=document.getElementById("separateMissionActions"),
+sendWhatsAppA=document.getElementById("sendWhatsAppA"),
+sendWhatsAppD=document.getElementById("sendWhatsAppD"),
+missionConfirm=document.getElementById("missionConfirm"),
+missionConfirmQuestion=document.getElementById("missionConfirmQuestion"),
+missionSent=document.getElementById("missionSent"),
+missionPending=document.getElementById("missionPending"),
+missionReset=document.getElementById("missionReset");
 /* Les 16 missions principals, ordenades per data. */
 const puzzleDays=[4,5,6,7,8,14,10,12,16,9,11,15,13,17,18,19];
 /*
@@ -2600,14 +2705,17 @@ function completedMissions(){
 }
 function saveCompleted(list){localStorage.setItem("cids2209_missions",JSON.stringify([...new Set(list.map(Number))]));renderPuzzle()}
 function isCompleted(activityId){return activityId!=null&&completedMissions().includes(Number(activityId))}
-function missionMessage(activityId,dateKey){
+function missionMessage(activityId,dateKey,agent=null){
   const info=activities[activityId];
-  if(info?.supplementary)return `CIDS · OPERACIÓ 2209 · ENCÀRREC EXTRAORDINARI · ${dateLabel(dateKey,{uppercase:true})}\n\nResposta de l’Equip DiA:\n`;
+  const responseLabel=agent
+    ?(info?.agentMessageLabels?.[agent]||`RESPOSTA DE L’AGENT ${agent}:`)
+    :"Resposta de l’Equip DiA:";
+  if(info?.supplementary)return `CIDS · OPERACIÓ 2209 · ENCÀRREC EXTRAORDINARI · ${dateLabel(dateKey,{uppercase:true})}\n\n${responseLabel}\n`;
   if(puzzleDays.includes(activityId)){
     const missionNumber=puzzleDays.indexOf(activityId)+1;
-    return `CIDS · OPERACIÓ 2209 · MISSIÓ ${pad2(missionNumber)} · ${dateLabel(dateKey,{uppercase:true})}\n\nResposta de l’Equip DiA:\n`;
+    return `CIDS · OPERACIÓ 2209 · MISSIÓ ${pad2(missionNumber)} · ${dateLabel(dateKey,{uppercase:true})}\n\n${responseLabel}\n`;
   }
-  return `CIDS · OPERACIÓ 2209 · ${dateLabel(dateKey,{uppercase:true})}\n\nResposta de l’Equip DiA:\n`;
+  return `CIDS · OPERACIÓ 2209 · ${dateLabel(dateKey,{uppercase:true})}\n\n${responseLabel}\n`;
 }
 function resolvedActivity(dateKey,data){
   if(dateKey!=="2026-09-20"||!data.dynamic)return data;
@@ -2634,13 +2742,20 @@ function openMissionModal(activityId,dateKey,data){
   missionConfirm.hidden=true;
   if(data.mission){
     const done=isCompleted(activityId);
-    sendWhatsApp.hidden=done;
+    const separate=Boolean(data.separateReplies);
+    sendWhatsApp.hidden=done||separate;
+    separateMissionActions.hidden=done||!separate;
+    missionConfirmQuestion.textContent=separate
+      ?"Heu enviat les dues respostes per separat?"
+      :"Has enviat la resposta al grup?";
     missionReset.hidden=!done;
-    missionReset.textContent=done?"✓ Missió registrada · marcar com a pendent":"Marcar la missió com a pendent";
+    missionReset.textContent=done
+      ?(data.supplementary?"✓ Encàrrec registrat · marcar com a pendent":"✓ Missió registrada · marcar com a pendent")
+      :"Marcar la tasca com a pendent";
   }
 }
-async function copyMissionText(activityId,dateKey){
-  const text=missionMessage(activityId,dateKey);
+async function copyMissionText(activityId,dateKey,agent=null){
+  const text=missionMessage(activityId,dateKey,agent);
   try{await navigator.clipboard.writeText(text)}
   catch{const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove()}
   window.open(`https://wa.me/?text=${encodeURIComponent(text)}`,"_blank");
@@ -2660,17 +2775,31 @@ function renderCompletedDays(){
   });
 }
 sendWhatsApp.addEventListener("click",()=>copyMissionText(currentMissionId,currentMissionDate));
+sendWhatsAppA.addEventListener("click",()=>copyMissionText(currentMissionId,currentMissionDate,"A"));
+sendWhatsAppD.addEventListener("click",()=>copyMissionText(currentMissionId,currentMissionDate,"D"));
 missionSent.addEventListener("click",()=>{
   const activityId=currentMissionId,list=completedMissions();
   if(activityId!=null&&!list.includes(activityId))list.push(activityId);
   saveCompleted(list);renderCompletedDays();
-  missionConfirm.hidden=true;sendWhatsApp.hidden=true;missionReset.hidden=false;missionReset.textContent="✓ Missió registrada · marcar com a pendent";
+  const info=activities[activityId];
+  missionConfirm.hidden=true;
+  sendWhatsApp.hidden=true;
+  separateMissionActions.hidden=true;
+  missionReset.hidden=false;
+  missionReset.textContent=info?.supplementary
+    ?"✓ Encàrrec registrat · marcar com a pendent"
+    :"✓ Missió registrada · marcar com a pendent";
   closeMainModal();showMissionResult(activityId);
 });
 missionPending.addEventListener("click",()=>missionConfirm.hidden=true);
 missionReset.addEventListener("click",()=>{
   saveCompleted(completedMissions().filter(id=>id!==currentMissionId));
-  renderCompletedDays();sendWhatsApp.hidden=false;missionReset.hidden=true;
+  renderCompletedDays();
+  const info=activities[currentMissionId];
+  const separate=Boolean(info?.separateReplies);
+  sendWhatsApp.hidden=separate;
+  separateMissionActions.hidden=!separate;
+  missionReset.hidden=true;
 });
 function renderPuzzle(){
   const grid=document.getElementById("puzzleGrid");
@@ -2704,6 +2833,7 @@ function semanticType(dateKey,info){
   if(info.kind==="final")return "closing";
   if(info.kind==="trip")return "itinerary";
   if(dateKey==="2026-09-20")return "revelation";
+  if(info.supplementary)return "assignment";
   return info.mission?"mission":"report";
 }
 function visibleTypeLabel(dateKey,info){
@@ -2775,7 +2905,8 @@ function renderMonth(calendarEl,year,monthIndex,onlyDays=null){
       const base=info||{kind:"empty",title:`${dateLabel(dateKey)} · Sense novetats`,text:"Aquesta data no té cap informe ni missió prevista. El CIDS continua treballant."};
       const data=resolvedActivity(dateKey,base);
       const modalBox=modal.querySelector(".modal-box");
-      modalBox.classList.toggle("is-mission",Boolean(data.mission));
+      modalBox.classList.toggle("is-assignment",Boolean(data.supplementary));
+      modalBox.classList.toggle("is-mission",Boolean(data.mission&&!data.supplementary));
       modalBox.classList.toggle("is-report",data.kind==="activity"&&!data.mission&&dateKey!=="2026-09-20");
       modalBox.classList.toggle("is-trip",data.kind==="trip"||dateKey==="2026-09-20");
       modalBox.classList.toggle("is-final",data.kind==="final");
@@ -2976,7 +3107,7 @@ setInterval(()=>{if(!testMode.checked||!simDate.value)updateCounter()},1000);
     <p><strong>Un toc</strong> obre o tanca la casella del dia.</p>
     <p><strong>Doble toc</strong> mostra tot el contingut de l’informe, la missió o l’itinerari.</p>
     <p>Des del 24 de juliol fins al 21 de setembre, cada casella s’activa en arribar la seva data. Després de la presentació inicial, la següent comunicació arribarà el 16 d’agost.</p>
-    <p>Les missions de preparació inclouen un botó per copiar el missatge i obrir WhatsApp. Després de confirmar «Sí, missió enviada», la tasca queda registrada. Cada missió completada desbloqueja una nova peça del puzzle, visible sota el calendari.</p>
+    <p>Les missions i els encàrrecs inclouen botons per copiar el missatge i obrir WhatsApp. Quan la resposta ha de ser individual, apareix un botó per a cada agent. Després de confirmar «Sí, missió enviada», la tasca queda registrada. Cada missió completada desbloqueja una nova peça del puzzle, visible sota el calendari.</p>
     <p>El <strong>20 de setembre</strong>, consta de dues fases, una a les 15h i una altra a les 16h. </p>
 	<p>En aquest moment, també quedaran desbloquejats tots els itineraris del 22 al 29, perquè els pugueu revisar conjuntament.</p>
       <p>El dia 30, s’activa en arribar la seva data.</p>
