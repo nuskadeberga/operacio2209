@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#071018">
-<title>Operació 2209 · Calendari de viatge · V76</title>
-<!-- V76: trasllats puntuals dels dies 7, 8 i 10 de setembre -->
+<title>Operació 2209 · Calendari de viatge · V77</title>
+<!-- V77: llegenda completa i visible també a la versió mòbil -->
 <style>
 :root{
   --bg:#071018;--panel:#0d1923;--panel2:#111f2b;--ink:#edf3f4;--muted:#91a4ad;
@@ -1972,6 +1972,63 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
 }
 </style>
 
+
+<style id="v77-complete-legend">
+.calendar-legend{
+  justify-content:flex-end;
+  row-gap:9px;
+  column-gap:14px;
+  max-width:680px;
+}
+.calendar-legend span,
+.mobile-legend span{
+  white-space:nowrap;
+}
+.calendar-legend i,
+.mobile-legend i{
+  flex:0 0 auto;
+}
+
+.mobile-legend{
+  margin-top:15px;
+  padding:12px 13px;
+  gap:10px 14px;
+  border:1px solid rgba(255,255,255,.075);
+  border-radius:13px;
+  background:rgba(13,25,35,.58);
+  font-size:.69rem;
+  line-height:1.25;
+}
+.mobile-legend span{
+  display:inline-flex;
+  align-items:center;
+}
+.mobile-legend i{
+  width:9px;
+  height:9px;
+  margin-right:6px;
+  border-radius:50%;
+  box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 10px rgba(255,255,255,.035);
+}
+
+@media(max-width:900px) and (min-width:701px){
+  .calendar-head{
+    align-items:flex-start;
+  }
+  .calendar-legend{
+    justify-content:flex-start;
+    max-width:100%;
+  }
+}
+@media(max-width:390px){
+  .mobile-legend{
+    gap:9px 12px;
+    padding:11px;
+    font-size:.66rem;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="shell">
@@ -2055,10 +2112,13 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
       </div>
       
     </div>
-    <div class="legend" aria-label="Llegenda del calendari">
+    <div class="legend calendar-legend" aria-label="Llegenda del calendari">
       <span><i style="background:var(--gold)"></i>Informe</span>
       <span><i style="background:var(--mission)"></i>Missió</span>
-      <span><i style="background:var(--cyan)"></i>Viatge</span>
+      <span><i style="background:var(--assignment)"></i>Encàrrec</span>
+      <span><i style="background:#ef5555"></i>Alerta</span>
+      <span><i style="background:#efd58e"></i>Revelació</span>
+      <span><i style="background:var(--cyan)"></i>Itinerari</span>
       <span><i style="background:var(--green)"></i>Final</span>
     </div>
   </div>
@@ -2089,8 +2149,16 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
 <section class="mobile-timeline" id="mobileTimeline" aria-labelledby="mobileTimelineTitle">
   <div class="mobile-timeline-head">
     <div class="eyebrow">CALENDARI DE L’OPERACIÓ</div>
-
     <p>Desplaça’t verticalment i toca qualsevol dia disponible per consultar-ne el contingut.</p>
+    <div class="legend mobile-legend" aria-label="Llegenda del calendari mòbil">
+      <span><i style="background:var(--gold)"></i>Informe</span>
+      <span><i style="background:var(--mission)"></i>Missió</span>
+      <span><i style="background:var(--assignment)"></i>Encàrrec</span>
+      <span><i style="background:#ef5555"></i>Alerta</span>
+      <span><i style="background:#efd58e"></i>Revelació</span>
+      <span><i style="background:var(--cyan)"></i>Itinerari</span>
+      <span><i style="background:var(--green)"></i>Final</span>
+    </div>
   </div>
   <div class="mobile-progress" aria-label="Progrés de les missions">
     <div class="mobile-progress-row"><span>MISSIONS COMPLETADES</span><b id="mobileMissionProgressText">0 de 16</b></div>
@@ -2261,7 +2329,7 @@ richHtml:`
   <li>Una activitat intensa o diverses de tranquil·les</li>
   <li>Seguir la ruta o deixar marge per perdre's</li>
 </ul>
-<p>També haureu d'indicar una activitat que us faria especial il·lusió, una situació que preferiríeu evitar i una condició imprescindible perquè el viatge sigui un èxit.</p>
+
 <br><p><b>L’ACCIÓ:</b> Cada agent enviarà les seves respostes per separat al canal de WhatsApp del CIDS, utilitzant el seu botó individual.</p>
 <br>🚨Avís: Queda prohibit pactar les respostes. El CIDS detecta amb facilitat les coincidències sospitosament perfectes.`,mission:true,supplementary:true,separateReplies:true,agentMessageLabels:{A:"RESPOSTES DE L’AGENT A:",D:"RESPOSTES DE L’AGENT D:"}},
 /* 12 D’AGOST */
