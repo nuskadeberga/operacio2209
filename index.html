@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#071018">
-<title>Operació 2209 · Calendari de viatge · V77</title>
-<!-- V77: llegenda completa i visible també a la versió mòbil -->
+<title>Operació 2209 · Calendari de viatge · V78</title>
+<!-- V78: progrés de missions principals visible i sincronitzat en ordinador i mòbil -->
 <style>
 :root{
   --bg:#071018;--panel:#0d1923;--panel2:#111f2b;--ink:#edf3f4;--muted:#91a4ad;
@@ -2029,6 +2029,63 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
 }
 </style>
 
+
+<style id="v78-mission-progress">
+.desktop-mission-progress{
+  margin:0 0 24px;
+  padding:15px 17px;
+  border:1px solid rgba(201,138,179,.30);
+  border-radius:15px;
+  background:linear-gradient(145deg,rgba(62,36,57,.35),rgba(13,25,35,.78));
+}
+.desktop-mission-progress-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  margin-bottom:10px;
+  color:var(--muted);
+  font-size:.74rem;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+.desktop-mission-progress-row b{
+  color:var(--mission);
+  font-size:.78rem;
+  letter-spacing:0;
+  white-space:nowrap;
+}
+.desktop-mission-progress-track{
+  height:9px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#182731;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.32);
+}
+.desktop-mission-progress-fill{
+  width:0;
+  height:100%;
+  border-radius:inherit;
+  background:linear-gradient(90deg,var(--mission),#efd5e6);
+  transition:width .35s ease;
+}
+
+/* La vista mòbil ja té el seu propi bloc de progrés */
+@media(max-width:700px){
+  .desktop-mission-progress{display:none}
+}
+
+/* Mateixa identitat visual per a la barra mòbil */
+.mobile-progress{
+  border-color:rgba(201,138,179,.30);
+  background:linear-gradient(145deg,rgba(62,36,57,.35),rgba(13,25,35,.78));
+}
+.mobile-progress-row b{color:var(--mission)}
+.mobile-progress-fill{
+  background:linear-gradient(90deg,var(--mission),#efd5e6);
+}
+</style>
+
 </head>
 <body>
 <div class="shell">
@@ -2123,6 +2180,16 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
     </div>
   </div>
 
+  <div class="desktop-mission-progress" aria-label="Progrés de les missions principals">
+    <div class="desktop-mission-progress-row">
+      <span>MISSIONS PRINCIPALS COMPLETADES</span>
+      <b id="desktopMissionProgressText">0 de 16</b>
+    </div>
+    <div class="desktop-mission-progress-track" aria-hidden="true">
+      <div class="desktop-mission-progress-fill" id="desktopMissionProgressFill"></div>
+    </div>
+  </div>
+
   <div class="calendar-scroll">
     <div class="calendar-inner">
       <section class="month-block july-single" aria-labelledby="monthJulyTitle">
@@ -2150,7 +2217,13 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
   <div class="mobile-timeline-head">
     <div class="eyebrow">CALENDARI DE L’OPERACIÓ</div>
     <p>Desplaça’t verticalment i toca qualsevol dia disponible per consultar-ne el contingut.</p>
-    <div class="legend mobile-legend" aria-label="Llegenda del calendari mòbil">
+    
+  </div>
+  <div class="mobile-progress" aria-label="Progrés de les missions">
+    <div class="mobile-progress-row"><span>MISSIONS COMPLETADES</span><b id="mobileMissionProgressText">0 de 16</b></div>
+    <div class="mobile-progress-track"><div class="mobile-progress-fill" id="mobileMissionProgressFill"></div></div>
+  </div>
+  <div class="legend mobile-legend" aria-label="Llegenda del calendari mòbil">
       <span><i style="background:var(--gold)"></i>Informe</span>
       <span><i style="background:var(--mission)"></i>Missió</span>
       <span><i style="background:var(--assignment)"></i>Encàrrec</span>
@@ -2159,11 +2232,7 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
       <span><i style="background:var(--cyan)"></i>Itinerari</span>
       <span><i style="background:var(--green)"></i>Final</span>
     </div>
-  </div>
-  <div class="mobile-progress" aria-label="Progrés de les missions">
-    <div class="mobile-progress-row"><span>MISSIONS COMPLETADES</span><b id="mobileMissionProgressText">0 de 16</b></div>
-    <div class="mobile-progress-track"><div class="mobile-progress-fill" id="mobileMissionProgressFill"></div></div>
-  </div>
+	<br>
   <div class="timeline-list" id="mobileTimelineList"></div>
   <div class="timeline-jump"><button id="jumpNextAvailable" type="button">Anar al pròxim informe disponible</button></div>
 </section>
@@ -2329,8 +2398,7 @@ richHtml:`
   <li>Una activitat intensa o diverses de tranquil·les</li>
   <li>Seguir la ruta o deixar marge per perdre's</li>
 </ul>
-
-<br><p><b>L’ACCIÓ:</b> Cada agent enviarà les seves respostes per separat al canal de WhatsApp del CIDS, utilitzant el seu botó individual.</p>
+<p><b>L’ACCIÓ:</b> Cada agent enviarà les seves respostes per separat al canal de WhatsApp del CIDS, utilitzant el seu botó individual.</p>
 <br>🚨Avís: Queda prohibit pactar les respostes. El CIDS detecta amb facilitat les coincidències sospitosament perfectes.`,mission:true,supplementary:true,separateReplies:true,agentMessageLabels:{A:"RESPOSTES DE L’AGENT A:",D:"RESPOSTES DE L’AGENT D:"}},
 /* 12 D’AGOST */
 6:{kind:"activity",icon:"📍 ",title:"El Quart destí", richHtml:`
@@ -2449,16 +2517,13 @@ richHtml:`
 <div class="flight-note"><b>PROTOCOL DE COMUNICACIONS</b><br><br>La Central no acceptarà com a informe de situació la frase: «Jo em pensava que entrava a la tarifa».</div>`},
 /* 02 DE SETEMBRE */
 16:{kind:"activity",icon:"🥩",title:"Abastiment de Queviures", richHtml:`
-<p><b>DESCRIPCIÓ:</b>    Un membre de l’equip amb gana és un membre vulnerable. L’operació d’avui requereix abastir-se d’energia utilitzant exclusivament queviures confiscats d’un dels cinc punts de vigilància. 
-<br><p><b>EL REPTE:</b>  Trieu el vostre menú de combat.
-<ul>
-  <li><div class="intel-kicker">RACCIÓ A</div>Orecchiette alle cime di rapa</li>
-  <li><div class="intel-kicker">RACCIÓ B</div>Espetada madeirense amb bolo do caco</li>
-  <li><div class="intel-kicker">RACCIÓ C</div>Haggis amb neeps and tatties</li>
-  <li><div class="intel-kicker">RACCIÓ D</div>Pochas con codornices</li>
-  <li><div class="intel-kicker">RACCIÓ E</div>Papas arrugadas amb mojo</li>
-  </ul>
-<br><p><b>L’ACCIÓ:</b> Fotografieu el subministrament abans que sigui consumit i eliminat pel vostre metabolisme.`,mission:true,puzzle:3},
+<p><b>DESCRIPCIÓ:</b>    Un membre de l’equip amb gana és un membre vulnerable. 
+El CIDS vol comprovar si l’Equip DiA és capaç d’identificar connexions gastronòmiques entre els cinc destins possibles utilitzant únicament els recursos disponibles a casa.
+<br><p><b>EL REPTE:</b>  Heu de trobar per casa cinc productes alimentaris,  que puguin relacionar-se amb cadascun dels cinc destins possibles.
+<p>Els productes poden estar relacionats amb el destí pel seu origen, pels ingredients, per una recepta típica o per qualsevol associació gastronòmica que pugueu defensar amb un mínim de coherència.</p>
+<br><p><b>L’ACCIÓ:</b> Col·loqueu els cinc productes junts, feu-ne una fotografia i envieu-la al canal de WhatsApp del CIDS. Haureu d’indicar quin producte correspon a cada destí i explicar breument la relació.</p><br>
+🚨Avís: Una ampolla de vi <b>NO</b> és una resposta vàlida. El CIDS és conscient que permetre-la facilitaria excessivament la missió i podria provocar que els cinc destins quedessin representats per la mateixa prestatgeria.
+`,mission:true,puzzle:3},
 /* 03 DE SETEMBRE */
 46:{kind:"activity",icon:"🚨",title:"Alerta gastronòmica",alert:true,
 alertDepartment:"CIDS · DEPARTAMENT DE GASTRONOMIA",
@@ -2565,13 +2630,21 @@ mission:true,puzzle:9},
 <p>Les rutes preparades per l'<em>Equip DiA</em> han estat revisades. Algunes propostes podran aparèixer al programa definitiu, encara que la Central es reserva el dret de canviar horaris, eliminar trajectes o afegir pauses.</p>
 <div class="hint">🔒 <b>Destinació:</b> confirmada · <b>Reserves:</b> realitzades · <b>Identitat del destí:</b> classificada.</div>`},
 /* 15 DE SETEMBRE */
-17:{kind:"activity",icon:"💼",title:"Suborn a la Central", richHtml:`
-<p><b>DESCRIPCIÓ:</b>    El canal de reserves està controlat per un alt càrrec de la Central —l’organitzador de la missió— que posseeix els codis necessaris per agrupar els seients. Les defenses digitals són impenetrables: només queda la negociació directa.
-<br><p><b>EL REPTE:</b>  Poseu-vos d’acord i formuleu un «suborn oficial» prou convincent perquè l’organitzador alliberi els seients conjunts.
-L’oferta ha de ser una promesa real que es compleixi durant el viatge. Pot ser convidar-lo a la primera ronda de cerveses o cafès, portar-li la maleta el primer dia, preparar el sopar una nit o qualsevol pacte de valor equivalent.
-<br><p><b>L’ACCIÓ:</b> Envieu el tractat al canal de WhatsApp, aprovat per tots els membres de l’Equip DiA. </p><br>
+17:{kind:"activity",icon:"🎥",title:"Autorització per viatjar", richHtml:`
+<p><b>DESCRIPCIÓ:</b> La Central necessita una  prova audiovisual que confirmi que els dos membres de l’<em>Equip DiA</em> estan preparats per operar en qualsevol dels cinc escenaris que han estat sotmesos a estudi.
+<br><p><b>EL REPTE:</b> Enregistreu una única nota de veu pronunciant la declaració <b>«<em>L’Equip DiA està preparat</em>»</b> en els cinc idiomes vinculats a les destinacions candidates; cada un dels agents ha de pronunciar les cinc frases alternativament en:
+<ul>
+  <li><div class="intel-kicker">ESPANYOL</div></li>
+  <li><div class="intel-kicker">ANGLÈS</div></li>
+  <li><div class="intel-kicker">ITALIÀ</div></li>
+  <li><div class="intel-kicker">BASC</div></li>
+  <li><div class="intel-kicker">PORTUGUÈS</div></li>
+  </ul>
+Després de les cinc declaracions , tots dos agents hauran de pronunciar alhora: "<b><em>Operació 2209: Equip DiA preparat</em></b>" .</p>
+<br><p><b>L’ACCIÓ:</b> Envieu el vídeo al canal de WhatsApp del CIDS sense talls, edicions ni veus artificals. 
 
-🚨Alerta: Si la Central considera insuficient l’oferta, el protocol es tancarà i l’equip viatjarà en zones separades. Negocieu bé.`,mission:true,puzzle:13},
+🚨Avís: Una pronunciació dubtosa serà tolerada. Una rialla incontrolada, probablement també. La substitució dels agents per un traductor automàtic comportarà la invalidació immediata del jurament.`,mission:true,puzzle:13},
+
 /* 16 DE SETEMBRE */
 45:{kind:"activity",icon:"🚨",title:"Alerta logística",alert:true,
 alertDepartment:"CIDS · CENTRAL DE VIATGES",
@@ -2607,20 +2680,13 @@ richHtml:`
 <br><p><b>L’ACCIÓ:</b> Envieu una única llista conjunta al canal de WhatsApp del CIDS. Al final, cada agent haurà d'afegir una cosa que creu que l'altre podria oblidar i una mesura concreta per evitar-ho.</p>
 <br>🚨Avís: «Tenir-ho tot preparat» no es considera una comprovació concreta.`,mission:true,supplementary:true},
 /* 19 DE SETEMBRE */
-19:{kind:"activity",icon:"🎥",title:"Autorització per viatjar", richHtml:`
-<p><b>DESCRIPCIÓ:</b> La Central necessita una última prova audiovisual que confirmi que els dos membres de l’<em>Equip DiA</em> estan preparats per operar en qualsevol dels cinc escenaris que han estat sotmesos a estudi.
-<br><p><b>EL REPTE:</b> Enregistreu una única nota de veu pronunciant la declaració <b>«<em>L’Equip DiA està preparat</em>»</b> en els cinc idiomes vinculats a les destinacions candidates; cada un dels agents ha de pronunciar les cinc frases alternativament en:
-<ul>
-  <li><div class="intel-kicker">ESPANYOL</div></li>
-  <li><div class="intel-kicker">ANGLÈS</div></li>
-  <li><div class="intel-kicker">ITALIÀ</div></li>
-  <li><div class="intel-kicker">BASC</div></li>
-  <li><div class="intel-kicker">PORTUGUÈS</div></li>
-  </ul>
-Després de les cinc declaracions , tots dos agents hauran de pronunciar alhora: "<b><em>Operació 2209: Equip DiA preparat</em></b>" .</p>
-<br><p><b>L’ACCIÓ:</b> Envieu el vídeo al canal de WhatsApp del CIDS sense talls, edicions ni veus artificals. 
+19:{kind:"activity",icon:"💼",title:"Suborn a la Central", richHtml:`
+<p><b>DESCRIPCIÓ:</b>    El canal de reserves està controlat per un alt càrrec de la Central —l’organitzador de la missió— que posseeix els codis necessaris per agrupar els seients. Les defenses digitals són impenetrables: només queda la negociació directa.
+<br><p><b>EL REPTE:</b>  Poseu-vos d’acord i formuleu un «suborn oficial» prou convincent perquè l’organitzador alliberi els seients conjunts.
+L’oferta ha de ser una promesa real que es compleixi durant el viatge. Pot ser convidar-lo a la primera ronda de cerveses o cafès, portar-li la maleta el primer dia, preparar el sopar una nit o qualsevol pacte de valor equivalent.
+<br><p><b>L’ACCIÓ:</b> Envieu el tractat al canal de WhatsApp, aprovat per tots els membres de l’Equip DiA. </p><br>
 
-🚨Avís: Una pronunciació dubtosa serà tolerada. Una rialla incontrolada, probablement també. La substitució dels agents per un traductor automàtic comportarà la invalidació immediata del jurament.`,mission:true,puzzle:15},
+🚨Alerta: Si la Central considera insuficient l’oferta, el protocol es tancarà i l’equip viatjarà en zones separades. Negocieu bé.`,mission:true,puzzle:15},
 /* 20 DE SETEMBRE */
 20:{kind:"activity",icon:"⌖",title:"Desclassificació final",dynamic:true},
 /* 21 DE SETEMBRE */
@@ -2893,6 +2959,30 @@ function renderPuzzle(){
     if(reveal)count++;
   }
   document.getElementById("puzzleCount").textContent=count;
+
+  const total=puzzleDays.length;
+  const percentage=total ? Math.min(100,(count/total)*100) : 0;
+
+  const progressTargets=[
+    {
+      text:document.getElementById("desktopMissionProgressText"),
+      fill:document.getElementById("desktopMissionProgressFill")
+    },
+    {
+      text:document.getElementById("mobileMissionProgressText"),
+      fill:document.getElementById("mobileMissionProgressFill")
+    }
+  ];
+
+  progressTargets.forEach(({text,fill})=>{
+    if(text)text.textContent=`${count} de ${total}`;
+    if(fill){
+      fill.style.width=`${percentage}%`;
+      fill.setAttribute("aria-valuenow",String(count));
+      fill.setAttribute("aria-valuemin","0");
+      fill.setAttribute("aria-valuemax",String(total));
+    }
+  });
 }
 renderPuzzle();
 
@@ -3296,11 +3386,8 @@ if(hb&&hm&&ch&&chx){
       else status.textContent='Disponible quan arribi la data';
       if(done&&puzzleDays.includes(activityId))completedPuzzle++;
     });
-    const total=puzzleDays.length;
-    const txt=document.getElementById('mobileMissionProgressText');
-    const fill=document.getElementById('mobileMissionProgressFill');
-    if(txt)txt.textContent=`${completedPuzzle} de ${total}`;
-    if(fill)fill.style.width=`${(completedPuzzle/total)*100}%`;
+    /* El recompte de progrés s'actualitza de manera centralitzada a renderPuzzle(). */
+    renderPuzzle();
   }
   function scrollToNext(){
     const items=[...document.querySelectorAll('.timeline-item.available')];
