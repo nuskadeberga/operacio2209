@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#071018">
-<title>Operació 2209 · Calendari de viatge · V78</title>
-<!-- V78: progrés de missions principals visible i sincronitzat en ordinador i mòbil -->
+<title>Operació 2209 · Calendari de viatge · V79</title>
+<!-- V79: progrés de missions daurat i inici de missions corregit al 6 d’agost -->
 <style>
 :root{
   --bg:#071018;--panel:#0d1923;--panel2:#111f2b;--ink:#edf3f4;--muted:#91a4ad;
@@ -2030,13 +2030,13 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
 </style>
 
 
-<style id="v78-mission-progress">
+<style id="v79-mission-progress">
 .desktop-mission-progress{
   margin:0 0 24px;
   padding:15px 17px;
-  border:1px solid rgba(201,138,179,.30);
+  border:1px solid rgba(217,185,111,.34);
   border-radius:15px;
-  background:linear-gradient(145deg,rgba(62,36,57,.35),rgba(13,25,35,.78));
+  background:linear-gradient(145deg,rgba(217,185,111,.085),rgba(13,25,35,.78));
 }
 .desktop-mission-progress-row{
   display:flex;
@@ -2044,13 +2044,13 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
   align-items:center;
   gap:16px;
   margin-bottom:10px;
-  color:var(--muted);
+  color:var(--gold);
   font-size:.74rem;
   font-weight:700;
   letter-spacing:.08em;
 }
 .desktop-mission-progress-row b{
-  color:var(--mission);
+  color:var(--gold);
   font-size:.78rem;
   letter-spacing:0;
   white-space:nowrap;
@@ -2066,7 +2066,8 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
   width:0;
   height:100%;
   border-radius:inherit;
-  background:linear-gradient(90deg,var(--mission),#efd5e6);
+  background:linear-gradient(90deg,var(--gold),#f0dfb2);
+  box-shadow:0 0 12px rgba(217,185,111,.22);
   transition:width .35s ease;
 }
 
@@ -2075,14 +2076,20 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
   .desktop-mission-progress{display:none}
 }
 
-/* Mateixa identitat visual per a la barra mòbil */
+/* Mateixa identitat daurada per a la barra mòbil */
 .mobile-progress{
-  border-color:rgba(201,138,179,.30);
-  background:linear-gradient(145deg,rgba(62,36,57,.35),rgba(13,25,35,.78));
+  border-color:rgba(217,185,111,.34);
+  background:linear-gradient(145deg,rgba(217,185,111,.085),rgba(13,25,35,.78));
 }
-.mobile-progress-row b{color:var(--mission)}
+.mobile-progress-row{
+  color:var(--gold);
+}
+.mobile-progress-row b{
+  color:var(--gold);
+}
 .mobile-progress-fill{
-  background:linear-gradient(90deg,var(--mission),#efd5e6);
+  background:linear-gradient(90deg,var(--gold),#f0dfb2);
+  box-shadow:0 0 12px rgba(217,185,111,.22);
 }
 </style>
 
@@ -2298,7 +2305,7 @@ title:"Activació de l’operació",richHtml:`<div class="intel-kicker">BRIEFING
 <p>A partir d’avui, aquest calendari serà l’únic canal oficial de comunicació amb els agents DiA.</p>
 <p>Durant les pròximes setmanes anireu rebent <b>informes</b>, <b>missions</b> i <b>instruccions</b> que us conduiran, pas a pas, fins a descobrir el destí de la vostra propera operació.</p>
 <h4>LES MISSIONS</h4>
-<p>A partir del <b>20 d’agost</b> començaran les missions operatives.</p>
+<p>A partir del <b>6 d’agost</b> començaran les missions operatives.</p>
 <p>Cada missió s’haurà de completar i enviar al canal de WhatsApp del CIDS. Quan l’acció estigui feta, caldrà tornar al calendari i marcar-la com a completada.</p>
 <p>Cadascuna de les <b>16 missions principals</b> completades desbloquejarà una nova peça del <b>document classificat</b>.</p>
 <p>La Central podrà emetre encàrrecs extraordinaris si es produeixen canvis logístics. Aquests encàrrecs no modificaran el nombre de fragments del document.</p>
