@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#071018">
-<title>Operació 2209 · Calendari de viatge · V81</title>
-<!-- V81: sirena CSS amb moviment i parpelleig clar als dies d’alerta -->
+<title>Operació 2209 · Calendari de viatge · V82</title>
+<!-- V82: data i hora real, text del compte enrere corregit i reajust de dates d’agost -->
 <style>
 :root{
   --bg:#071018;--panel:#0d1923;--panel2:#111f2b;--ink:#edf3f4;--muted:#91a4ad;
@@ -2306,6 +2306,48 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
 </style>
 
 
+
+<style id="v82-current-clock">
+.current-clock{
+  margin-left:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  justify-content:center;
+  gap:4px;
+  min-width:255px;
+  padding:9px 12px;
+  border:1px solid rgba(217,185,111,.24);
+  border-radius:12px;
+  background:rgba(13,25,35,.72);
+  text-align:right;
+}
+.current-clock span{
+  color:var(--gold);
+  font-size:.58rem;
+  font-weight:800;
+  letter-spacing:.16em;
+}
+.current-clock strong{
+  color:#dbe5e7;
+  font-size:.78rem;
+  font-weight:600;
+  letter-spacing:.035em;
+  white-space:nowrap;
+}
+body.test-mode .current-clock{display:none!important}
+@media(max-width:700px){
+  .current-clock{
+    width:100%;
+    min-width:0;
+    margin-left:0;
+    align-items:flex-start;
+    text-align:left;
+  }
+  .current-clock strong{white-space:normal;line-height:1.4}
+}
+</style>
+
 </head>
 <body>
 <div class="shell">
@@ -2328,6 +2370,11 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
   </svg>
 </div>
     <div><b>OPERACIÓ 2209</b><span>CIDS · Centre Internacional de Destins Secrets</span></div>
+  </div>
+
+  <div class="current-clock" id="currentClock" aria-live="polite">
+    <span>DATA I HORA ACTUAL</span>
+    <strong id="currentDateTime">—</strong>
   </div>
   <div class="testbar" id="testbar" hidden>
     <span class="test-badge">MODE PROVES</span>
@@ -2935,10 +2982,10 @@ L’oferta ha de ser una promesa real que es compleixi durant el viatge. Pot ser
 /* V75 · Presentació el 24 de juliol; continuació des de l’1 d’agost */
 const scheduleByDate={
   "2026-07-24":1,
-  "2026-08-01":2,
+  "2026-08-01":37,
+  "2026-08-02":2,
   "2026-08-03":3,
-  "2026-08-04":37,
-  "2026-08-06":4,
+  "2026-08-05":4,
   "2026-08-07":33,
   "2026-08-09":5,
   "2026-08-10":38,
@@ -3404,7 +3451,7 @@ function updateCounter(){
     minutes=Math.max(0,Math.floor(diff/60000)%60);
     seconds=Math.max(0,Math.floor(diff/1000)%60);
     label=`OPERACIÓ EN CURS · DIA ${elapsedDay}`;
-    sub=`Dia ${elapsedDay} de la missió · temps restant fins al retorn.`;
+    sub=`Dia ${elapsedDay} de l’operació · temps restant fins al retorn.`;
   }else{
     label="OPERACIÓ FINALITZADA";
     sub="Missió completada. El dia 30 us espera l’informe final.";
@@ -3624,6 +3671,39 @@ if(hb&&hm&&ch&&chx){
   window.addEventListener('storage',syncTimeline);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncTimeline()});
   setTimeout(syncTimeline,0);
+})();
+</script>
+
+
+<script id="v82-current-clock-script">
+(function(){
+  const output=document.getElementById("currentDateTime");
+  if(!output)return;
+
+  const dateFormatter=new Intl.DateTimeFormat("ca-ES",{
+    weekday:"long",
+    day:"2-digit",
+    month:"long",
+    year:"numeric"
+  });
+  const timeFormatter=new Intl.DateTimeFormat("ca-ES",{
+    hour:"2-digit",
+    minute:"2-digit",
+    second:"2-digit",
+    hour12:false
+  });
+
+  function capitalize(text){
+    return text ? text.charAt(0).toUpperCase()+text.slice(1) : text;
+  }
+
+  function updateCurrentClock(){
+    const now=new Date();
+    output.textContent=`${capitalize(dateFormatter.format(now))} · ${timeFormatter.format(now)}`;
+  }
+
+  updateCurrentClock();
+  setInterval(updateCurrentClock,1000);
 })();
 </script>
 
