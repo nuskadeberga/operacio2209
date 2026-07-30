@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#071018">
-<title>Operació 2209 · Calendari de viatge · V79</title>
-<!-- V79: progrés de missions daurat i inici de missions corregit al 6 d’agost -->
+<title>Operació 2209 · Calendari de viatge · V81</title>
+<!-- V81: sirena CSS amb moviment i parpelleig clar als dies d’alerta -->
 <style>
 :root{
   --bg:#071018;--panel:#0d1923;--panel2:#111f2b;--ink:#edf3f4;--muted:#91a4ad;
@@ -2093,6 +2093,219 @@ body.modal-open{overflow:hidden;position:fixed;width:100%}
 }
 </style>
 
+
+
+<style id="v81-alert-sirens">
+/* Sirena CSS: moviment visible, independent dels emojis del sistema */
+.day.alert .front{
+  position:relative;
+  overflow:visible;
+  animation:alertCellPulse 1.6s ease-in-out infinite!important;
+}
+
+.alert-siren,
+.mobile-alert-siren{
+  position:relative;
+  display:inline-block!important;
+  width:38px;
+  height:38px;
+  transform-origin:50% 90%;
+  animation:sirenRock .72s ease-in-out infinite alternate;
+  filter:drop-shadow(0 0 8px rgba(255,52,45,.78));
+  pointer-events:none;
+}
+
+.alert-siren{
+  position:absolute;
+  top:8px;
+  left:50%;
+  z-index:12;
+  margin-left:-19px;
+}
+
+.mobile-alert-siren{
+  width:27px;
+  height:27px;
+  margin-right:7px;
+  vertical-align:-7px;
+}
+
+.siren-light{
+  position:absolute;
+  left:8px;
+  top:4px;
+  width:22px;
+  height:24px;
+  border:2px solid #ff8d87;
+  border-bottom:0;
+  border-radius:13px 13px 5px 5px;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.75),rgba(255,255,255,0) 34%),
+    linear-gradient(180deg,#ff746e,#d51f1f 68%,#8d1111);
+  box-shadow:
+    inset 0 0 7px rgba(255,255,255,.55),
+    0 0 4px #ff4f47,
+    0 0 13px rgba(255,47,40,.9),
+    0 0 25px rgba(255,47,40,.55);
+  animation:sirenFlash .72s steps(2,end) infinite;
+}
+
+.siren-light::after{
+  content:"";
+  position:absolute;
+  left:4px;
+  top:3px;
+  width:5px;
+  height:13px;
+  border-radius:999px;
+  background:rgba(255,255,255,.65);
+}
+
+.siren-base{
+  position:absolute;
+  left:5px;
+  top:27px;
+  width:28px;
+  height:7px;
+  border:1px solid #b9c2c6;
+  border-radius:2px 2px 5px 5px;
+  background:linear-gradient(180deg,#d9e0e2,#68767c 46%,#252f33 48%,#101619);
+  box-shadow:0 2px 5px rgba(0,0,0,.5);
+}
+
+.ray{
+  position:absolute;
+  display:block;
+  width:3px;
+  height:10px;
+  border-radius:999px;
+  background:#ff6c64;
+  box-shadow:0 0 7px rgba(255,63,55,.9);
+  opacity:.25;
+  animation:sirenRays .72s steps(2,end) infinite;
+}
+
+.ray-left{
+  left:1px;
+  top:5px;
+  transform:rotate(-48deg);
+}
+
+.ray-top{
+  left:18px;
+  top:-7px;
+}
+
+.ray-right{
+  right:1px;
+  top:5px;
+  transform:rotate(48deg);
+}
+
+.mobile-alert-siren .siren-light{
+  left:6px;
+  top:3px;
+  width:16px;
+  height:17px;
+  border-radius:10px 10px 4px 4px;
+}
+
+.mobile-alert-siren .siren-base{
+  left:4px;
+  top:20px;
+  width:20px;
+  height:5px;
+}
+
+.mobile-alert-siren .ray{
+  width:2px;
+  height:7px;
+}
+
+.mobile-alert-siren .ray-left{left:0;top:4px}
+.mobile-alert-siren .ray-top{left:13px;top:-5px}
+.mobile-alert-siren .ray-right{right:0;top:4px}
+
+.day.alert .number{
+  margin-top:27px;
+}
+
+.timeline-item.alert .timeline-card{
+  position:relative;
+  overflow:hidden;
+  animation:alertCardBorder 1.6s ease-in-out infinite;
+}
+
+@keyframes sirenRock{
+  0%{transform:rotate(-9deg) scale(.96)}
+  100%{transform:rotate(9deg) scale(1.08)}
+}
+
+@keyframes sirenFlash{
+  0%,42%{
+    opacity:.48;
+    filter:brightness(.72);
+    box-shadow:
+      inset 0 0 5px rgba(255,255,255,.35),
+      0 0 3px #ff4f47,
+      0 0 8px rgba(255,47,40,.55);
+  }
+  43%,100%{
+    opacity:1;
+    filter:brightness(1.45);
+    box-shadow:
+      inset 0 0 10px rgba(255,255,255,.75),
+      0 0 7px #ff4f47,
+      0 0 19px rgba(255,47,40,1),
+      0 0 34px rgba(255,47,40,.72);
+  }
+}
+
+@keyframes sirenRays{
+  0%,42%{opacity:.08}
+  43%,100%{opacity:1}
+}
+
+@keyframes alertCellPulse{
+  0%,100%{
+    box-shadow:0 12px 28px rgba(0,0,0,.22),0 0 0 rgba(239,85,85,0)!important;
+  }
+  50%{
+    box-shadow:0 12px 28px rgba(0,0,0,.22),0 0 24px rgba(239,85,85,.38)!important;
+  }
+}
+
+@keyframes alertCardBorder{
+  0%,100%{
+    border-color:rgba(239,85,85,.35);
+    box-shadow:inset 3px 0 0 rgba(239,85,85,.38);
+  }
+  50%{
+    border-color:rgba(255,105,98,.85);
+    box-shadow:
+      inset 3px 0 0 rgba(255,105,98,.9),
+      0 0 15px rgba(239,85,85,.25);
+  }
+}
+
+/* Encara bloquejada: continua animada, però menys intensa */
+.day.alert.locked:not(.test-enabled) .alert-siren,
+.timeline-item.alert:not(.available) .mobile-alert-siren{
+  opacity:.72;
+}
+
+/* Només s'atura si l'usuari ha activat explícitament la reducció de moviment */
+@media(prefers-reduced-motion:reduce){
+  .alert-siren,
+  .mobile-alert-siren,
+  .day.alert .front,
+  .timeline-item.alert .timeline-card{
+    animation:none!important;
+  }
+}
+</style>
+
+
 </head>
 <body>
 <div class="shell">
@@ -3056,7 +3269,7 @@ function renderMonth(calendarEl,year,monthIndex,onlyDays=null){
 
     const front=document.createElement("div");
     front.className="front";
-    front.innerHTML=`<span class="number">${day}</span><span class="type">${visibleTypeLabel(dateKey,info)}</span><span class="lock">⌁</span>`;
+    front.innerHTML=`${info?.alert?'<span class="alert-siren" aria-hidden="true"><span class="siren-light"></span><span class="siren-base"></span><i class="ray ray-left"></i><i class="ray ray-top"></i><i class="ray ray-right"></i></span>':''}<span class="number">${day}</span><span class="type">${visibleTypeLabel(dateKey,info)}</span><span class="lock">⌁</span>`;
     button.append(back,front);cell.appendChild(button);calendarEl.appendChild(cell);
 
     let clickTimer=null;
@@ -3359,7 +3572,7 @@ if(hb&&hm&&ch&&chx){
         <span class="timeline-date"><strong>${pad2(day)}</strong><span>${weekDay} · ${monthShort[monthIndex]}</span></span>
         <span class="timeline-copy">
           <span class="timeline-kicker">${typeLabel(dateKey,info)}</span>
-          <span class="timeline-title">${info?.title||'Sense activitat prevista'}</span>
+          <span class="timeline-title">${info?.alert?'<span class="mobile-alert-siren" aria-hidden="true"><span class="siren-light"></span><span class="siren-base"></span><i class="ray ray-left"></i><i class="ray ray-top"></i><i class="ray ray-right"></i></span> ':''}${info?.title||'Sense activitat prevista'}</span>
           <span class="timeline-status"></span>
         </span>
         <span class="timeline-arrow" aria-hidden="true">›</span>`;
