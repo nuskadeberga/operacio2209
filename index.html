@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#071018">
-<title>Operació 2209 · Calendari de viatge · V82</title>
-<!-- V82: data i hora real, text del compte enrere corregit i reajust de dates d’agost -->
+<title>Operació 2209 · Calendari de viatge · V84</title>
+<!-- V84: mida de les caselles d’alerta igualada a la resta en ordinador -->
 <style>
 :root{
   --bg:#071018;--panel:#0d1923;--panel2:#111f2b;--ink:#edf3f4;--muted:#91a4ad;
@@ -2348,6 +2348,61 @@ body.test-mode .current-clock{display:none!important}
 }
 </style>
 
+
+<style id="v84-desktop-alert-size-fix">
+/* Les alertes ocupen exactament tota la cel·la del calendari, igual que la resta */
+@media(min-width:701px){
+  .day.alert{
+    width:100%;
+    height:auto;
+    min-width:0;
+    min-height:126px;
+  }
+
+  .day.alert .door{
+    position:absolute;
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    margin:0!important;
+    padding:0!important;
+    transform:none;
+  }
+
+  .day.alert .front,
+  .day.alert .back{
+    inset:0!important;
+    width:100%!important;
+    height:100%!important;
+    min-width:100%!important;
+    min-height:100%!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Evita que el resplendor alteri òpticament les dimensions de la targeta */
+  .day.alert .front{
+    overflow:hidden!important;
+    transform-origin:left center;
+  }
+
+  /* Recol·loquem la sirena perquè continuï visible dins la casella */
+  .day.alert .alert-siren{
+    top:8px;
+  }
+
+  .day.alert .number{
+    margin-top:27px;
+  }
+
+  /* L'obertura conserva exactament el mateix moviment que la resta */
+  .day.alert.open .front,
+  .day.alert.open .door:hover .front{
+    transform:translateX(-3px) rotateY(-108deg)!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <div class="shell">
@@ -2599,12 +2654,12 @@ Durant aquesta trobada es produiran els darrers esdeveniments abans de la descla
 <p>El CIDS confirma que <b>els tres destins seleccionats en el primer procés</b> continuen sent viables.</p>
 <h4>Destins compatibles</h4>
 <div class="compatible-list"><div class="compatible-coordinate">
-<span class="clue">🌿</span><b>41° 07′ 31″ N  i 16° 52′ 00″ E </b></div><div class="compatible-coordinate">
-<span class="clue">🌺</span><b>32° 39′ 03″ N i 16° 54′ 31″ O</b></div><div class="compatible-coordinate">
-<span class="clue">🏰</span><b>55° 51' 40″ N i   4° 15' 00″ O </b></div>
+<span class="clue"></span><b>41° 07′ 31″ N  i 16° 52′ 00″ E </b></div><div class="compatible-coordinate">
+<span class="clue"></span><b>32° 39′ 03″ N i 16° 54′ 31″ O</b></div><div class="compatible-coordinate">
+<span class="clue"></span><b>55° 51' 40″ N i   4° 15' 00″ O </b></div>
 </div><div class="intel-kicker">🛰️ NOVA EVIDÈNCIA</div>
 <p>El Departament d’Anàlisi ha detectat un quart destí compatible i ha decidit incorporar-lo a la llista:</p><div class="compatible-coordinate">
-<span class="clue">🍷</span><b>///acollits.coixinera.impecables</b></div>`},
+<span class="clue"></span><b>///acollits.coixinera.impecables</b></div>`},
 
 /* 04 D’AGOST */
 37:{kind:"activity",icon:"📋",title:"Ampliació del protocol operatiu",richHtml:`
@@ -2635,25 +2690,25 @@ Durant aquesta trobada es produiran els darrers esdeveniments abans de la descla
 alertDepartment:"CIDS · DEPARTAMENT DE SANITAT",
 alertTitle:"Alerta sanitària · nivell preventiu",
 alertHtml:`
-<p>A causa de les darreres informacions rebudes pel Departament de Sanitat del CIDS, es recomana revisar la documentació sanitària de l’Equip DiA i consultar si cal valorar la vacunació contra el dengue —vacuna Qdenga—.</p>
+<p>A causa de les darreres informacions rebudes pel Departament de Sanitat del CIDS, es recomana revisar la documentació sanitària de l’<em>Equip DiA</em> i consultar si cal valorar la vacunació contra el dengue —vacuna Qdenga—.</p>
 <p>Un dels destins possibles ha notificat recentment <strong>dos casos autòctons</strong>.</p>
 <div class="health-alert-classified">Per motius de seguretat operativa, la identitat de la destinació afectada es manté classificada.</div>
 <small class="health-alert-disclaimer">Informació operativa provisional. Qualsevol decisió sanitària real s’ha de consultar amb un professional sanitari.</small>`,
 richHtml:`
 <div class="intel-kicker">DEPARTAMENT DE SANITAT · NIVELL PREVENTIU</div>
-<p>A causa de les darreres informacions rebudes pel Departament de Sanitat del CIDS, es recomana revisar la documentació sanitària de l’Equip DiA i consultar si cal valorar la vacunació contra el dengue —vacuna Qdenga—.</p>
+<p>A causa de les darreres informacions rebudes pel Departament de Sanitat del CIDS, es recomana revisar la documentació sanitària de l’<em>Equip DiA</em> i consultar si cal valorar la vacunació contra el dengue —vacuna Qdenga—.</p>
 <p>Un dels destins possibles ha notificat recentment <b>dos casos autòctons</b>.</p>
 <div class="flight-note"><b>INFORMACIÓ CLASSIFICADA</b><br><br>Per motius de seguretat operativa, la identitat de la destinació afectada es manté classificada.</div>
 <small>Informació operativa provisional. Qualsevol decisió sanitària real s’ha de consultar amb un professional sanitari.</small>`},
 /* 09 D’AGOST */
 5:{kind:"activity",icon:"📦",title:"Objecte classificat", richHtml:`
 <p><b>DESCRIPCIÓ:</b>    El Departament de Logística necessita avaluar el vostre instint operatiu.
-<br><p><b>EL REPTE:</b> Sense parlar entre vosaltres, cadascú ha de seleccionar un objecte de casa que consideri imprescindible o especialment útil durant el viatge (evitar roba interior).
-<br><p><b>L’ACCIÓ:</b> Fotografieu els dos objectes i envieu les imatges al canal de WhatsApp del CIDS.</p><br>
-🚨️Avís: No es permet coordinar l’elecció. La coincidència —o la falta absoluta de criteri compartit— serà penalitzada.`,mission:true,puzzle:2},
+<br><p><b>EL REPTE:</b> Sense parlar entre vosaltres, cadascú ha de seleccionar un objecte que consideri imprescindible o especialment útil de l'agent contrari, durant el viatge.
+<br><p><b>L’ACCIÓ:</b> Fotografieu els dos objectes i envieu les imatges al canal de WhatsApp del CIDS indicant quin objecte és de cada agent.</p><br>
+🚨️Avís: La falta absoluta de criteri, comportarà una multa/sanció, que serà cobrada pel CIDS durant el viatge.`,mission:true,puzzle:2},
 /* 10 D’AGOST */
 38:{kind:"activity",icon:"📝",title:"Interrogatori de preferències",richHtml:`
-<p><b>DESCRIPCIÓ:</b> El CIDS necessita conèixer millor les preferències dels agents abans de continuar valorant les diferents opcions.</p>
+<p><b>DESCRIPCIÓ:</b> El CIDS necessita conèixer millor les preferències dels agents abans de continuar valorant les diferents opcions de viatge. </p>
 <br><p><b>EL REPTE:</b> Sense parlar entre vosaltres, cadascú haurà d'escollir una opció en aquests vuit dilemes:</p>
 <ul>
   <li>Ciutat o natura</li>
@@ -2666,25 +2721,33 @@ richHtml:`
   <li>Seguir la ruta o deixar marge per perdre's</li>
 </ul>
 <p><b>L’ACCIÓ:</b> Cada agent enviarà les seves respostes per separat al canal de WhatsApp del CIDS, utilitzant el seu botó individual.</p>
-<br>🚨Avís: Queda prohibit pactar les respostes. El CIDS detecta amb facilitat les coincidències sospitosament perfectes.`,mission:true,supplementary:true,separateReplies:true,agentMessageLabels:{A:"RESPOSTES DE L’AGENT A:",D:"RESPOSTES DE L’AGENT D:"}},
+<br>🚨Avís: Queda prohibit pactar les respostes. El CIDS detecta amb facilitat les coincidències sospitosament perfectes. L'elecció d'una o una altra opció, podrà condicionar el destí final.`,mission:true,supplementary:true,separateReplies:true,agentMessageLabels:{A:"RESPOSTES DE L’AGENT A:",D:"RESPOSTES DE L’AGENT D:"}},
 /* 12 D’AGOST */
 6:{kind:"activity",icon:"📍 ",title:"El Quart destí", richHtml:`
 <p><b>DESCRIPCIÓ:</b>    En un informe anterior, el CIDS va incorporar un nou destí a l'expedient de l'Operació 2209.
 <br><p><b>EL REPTE:</b>  A partir de les pistes publicades, quins son els quatre destins possibles?
 No cal que sigui una resposta conjunta. Si no coincidiu, podeu enviar dues hipòtesis diferents.
 <br><p><b>L’ACCIÓ:</b> Envieu al canal de WhatsApp del CIDS els noms dels 4 destins seleccionats. Si voleu, podeu afegir una breu explicació de com hi heu arribat. </p><br>
-🚨Avís: La Central no confirmarà ni desmentirà cap de les respostes. El veritable destí només serà revelat quan arribi el moment oportú.`,mission:true,puzzle:3},
+🚨Avís: La Central no confirmarà ni desmentirà cap de les respostes. No us flipeu abans d'hora.`,mission:true,puzzle:3},
 /* 13 D’AGOST */
 31:{kind:"activity",icon:"📡",title:"Actualització extraordinària",richHtml:`
 <div class="intel-kicker">AMPLIACIÓ DE L’EXPEDIENT</div>
-<p>La Unitat de Contractació del CIDS  té constància que la destinació de <b>Lanzarote</b> va ser mencionada de manera especulativa per l’Equip DiA durant la presentació de l'operació, abans de disposar de cap informació operativa.</p>
-<p>Degut a aquesta situació, el CIDS amb la seva infinita generositat, ha decidit en una <em>Assamblea Extraordinària</em>, incorporar aquest nou destí a la llista inicial.</p>
-<div class="flight-note"><b>Aquest nou destí no suposa cap benefici respecte als destins ja existens, no concedeix cap valoració extra i no implica que la destinació hagi d'estar seleccionada.</b></div>
+<p>La Unitat de Contractació del CIDS  té constància que la destinació de <b>Lanzarote</b> va ser mencionada de manera especulativa per l’<em>Equip DiA</em> durant la presentació de l'operació, abans de disposar de cap informació operativa.</p>
+<p>Degut a aquesta situació, el CIDS va dubtar de penalitzar amb una sanció a l'<em>agent D</em>, però al final, i gràcies a la  infinita generositat del CIDS, ha decidit en una <em>Assamblea Extraordinària</em>, incorporar aquest nou destí a la llista actual.</p>
+<div class="flight-note"><b>Aquest nou destí no suposa cap benefici respecte als destins ja existens, no concedeix cap valoració extra i no implica que aquesta destinació hagi d'estar seleccionada.</b></div>
 <br><p><Per tant, les destinacions actuals candidates passen a ser cinc.
 <p>Lanzarote seguirà el mateix procediment de selecció que la resta.</p>
 
 
 `},
+/* 14 D’AGOST */
+47:{kind:"activity",icon:"⛔",title:"Veto logístic",richHtml:`
+<div class="intel-kicker">CIDS · DEPARTAMENT DE LOGÍSTICA</div>
+<p>Després d’analitzar els objectes seleccionats pels agents el dia 9 d’agost, el Departament de Logística comunica una resolució definitiva.</p>
+<p><b>Els dos objectes seleccionats queden automàticament vetats i no es podran incloure a l’equipatge de l’Operació 2209.</b></p>
+<p>La prohibició afecta tant la maleta principal com qualsevol bossa, motxilla o equipatge de mà.</p>
+<div class="flight-note">La Central podrà comprovar el contingut de l’equipatge. La presència d’un dels objectes vetats serà considerada una incidència de desobediència logística.</div>`},
+
 /* 15 D’AGOST */
 7:{kind:"activity",icon:"🕵️‍♂️",title:"L’Art del Camuflatge", richHtml:`
 <p><b>DESCRIPCIÓ:</b>    Per poder creuar la frontera sense aixecar sospites, el CIDS necessita comprovar la vostra capacitat de transformació camaleònica. 
@@ -2991,6 +3054,7 @@ const scheduleByDate={
   "2026-08-10":38,
   "2026-08-12":6,
   "2026-08-13":31,
+  "2026-08-14":47,
   "2026-08-15":7,
   "2026-08-16":34,
   "2026-08-18":8,
