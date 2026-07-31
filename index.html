@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#071018">
-<title>Operació 2209 · Calendari de viatge · V88</title>
-<!-- V88: penjat complet en cinc errors, amb bloqueig definitiu fins a les 16.00 h -->
+<title>Operació 2209 · Calendari de viatge · V89</title>
+<!-- V89: planning complet del viatge distribuït del 22 al 29 de setembre -->
 <style>
 :root{
   --bg:#071018;--panel:#0d1923;--panel2:#111f2b;--ink:#edf3f4;--muted:#91a4ad;
@@ -2622,6 +2622,58 @@ body.test-mode .current-clock{display:none!important}
 }
 </style>
 
+
+<style id="v89-trip-planning-styles">
+.trip-plan{display:grid;gap:15px;margin-top:14px}
+.trip-summary{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;
+  padding:13px;border:1px solid rgba(123,209,206,.24);border-radius:14px;
+  background:rgba(123,209,206,.045)
+}
+.trip-summary div{min-width:0}
+.trip-summary span{
+  display:block;color:var(--muted);font-size:.62rem;font-weight:800;
+  letter-spacing:.09em;text-transform:uppercase
+}
+.trip-summary b{
+  display:block;margin-top:4px;color:#eaf2f3;font-size:.82rem;
+  line-height:1.35;overflow-wrap:anywhere
+}
+.trip-section{
+  padding:14px;border:1px solid rgba(255,255,255,.09);
+  border-radius:13px;background:rgba(255,255,255,.025)
+}
+.trip-section h4{
+  margin:0 0 10px;color:var(--cyan);font-size:.72rem;
+  letter-spacing:.13em;text-transform:uppercase
+}
+.trip-time{display:grid;grid-template-columns:80px 1fr;gap:10px;padding:7px 0}
+.trip-time+.trip-time{border-top:1px solid rgba(255,255,255,.065)}
+.trip-time time{color:var(--gold);font-size:.79rem;font-weight:800}
+.trip-time div{color:#c7d4d8;font-size:.85rem;line-height:1.48}
+.trip-time b{color:#edf3f4}
+.trip-list{margin:0;padding-left:18px;color:#c7d4d8;font-size:.84rem;line-height:1.55}
+.trip-note{
+  padding:12px 13px;border-left:3px solid var(--gold);border-radius:8px;
+  background:rgba(217,185,111,.06);color:#c7d4d8;font-size:.82rem;line-height:1.5
+}
+.trip-note.alt{border-left-color:var(--cyan);background:rgba(123,209,206,.05)}
+.trip-comment{
+  color:#d8c898;font-family:Georgia,'Times New Roman',serif;
+  font-size:.94rem;font-style:italic;line-height:1.55;text-align:center
+}
+.trip-general{
+  margin-top:18px;padding-top:17px;border-top:1px solid rgba(217,185,111,.2)
+}
+.trip-km-grid{display:grid;grid-template-columns:1fr auto;gap:7px 14px;font-size:.8rem}
+.trip-km-grid div{padding:5px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.trip-km-grid div:nth-child(even){color:var(--gold);text-align:right;font-weight:700}
+@media(max-width:600px){
+  .trip-summary{grid-template-columns:1fr}
+  .trip-time{grid-template-columns:68px 1fr}
+}
+</style>
+
 </head>
 <body>
 <div class="shell">
@@ -3341,25 +3393,281 @@ L’oferta ha de ser una promesa real que es compleixi durant el viatge. Pot ser
         </div>
       </div>
     </div>
+
+    <div class="trip-general">
+      <div class="trip-section">
+        <h4>Resum operatiu del recorregut</h4>
+        <div class="trip-km-grid">
+          <div>22 set. · Aeroport – Puerto del Carmen</div><div>10–15 km</div>
+          <div>23 set. · Timanfaya i costa volcànica</div><div>85–105 km</div>
+          <div>24 set. · Jameos i nord</div><div>120–135 km</div>
+          <div>25 set. · La Geria i centre</div><div>50–70 km</div>
+          <div>26 set. · Playa Blanca i Papagayo</div><div>75–95 km</div>
+          <div>27 set. · Teguise i Costa Teguise</div><div>70–90 km</div>
+          <div>28 set. · Jardín de Cactus i Arrecife</div><div>75–95 km</div>
+          <div>29 set. · Puerto del Carmen – aeroport</div><div>10–15 km</div>
+          <div><b>Total aproximat</b></div><div><b>495–620 km</b></div>
+        </div>
+      </div>
+
+      <div class="trip-section">
+        <h4>Recomanacions generals</h4>
+        <ul class="trip-list">
+          <li>Arribeu aviat a Timanfaya i al mercat de Teguise.</li>
+          <li>A Arrecife és preferible utilitzar un aparcament públic.</li>
+          <li>Porteu calçat ferm, encara que no hi hagi excursions a peu.</li>
+          <li>Una jaqueta fina o tallavents serà útil al nord i a la costa occidental.</li>
+          <li>Respecteu sempre les banderes i l’estat del mar.</li>
+          <li>Comproveu si el contracte del cotxe permet circular per la pista de Papagayo.</li>
+          <li>La reserva prioritària és Timanfaya.</li>
+        </ul>
+      </div>
+    </div>
   `
 },
 
 /* 22 DE SETEMBRE */
-22:{kind:"trip",icon:"",title:"...",richHtml:``},
+22:{
+  kind:"trip",
+  icon:"✈️",
+  title:"Arribada a Lanzarote",
+  richHtml:`
+    <div class="trip-plan">
+      <div class="trip-summary">
+        <div><span>Ruta</span><b>Aeroport – Puerto del Carmen</b></div>
+        <div><span>Entorn</span><b>Urbà i costa</b></div>
+        <div><span>Distància</span><b>10–15 km</b></div>
+        <div><span>Intensitat</span><b>Baixa</b></div>
+      </div>
+
+      <div class="trip-section">
+        <h4>Planificació</h4>
+        <div class="trip-time"><time>15.50 h</time><div><b>Arribada a Lanzarote.</b> Recollida de maletes i tràmits del vehicle de lloguer. Calculeu entre 60 i 90 minuts.</div></div>
+        <div class="trip-time"><time>17.30 h</time><div><b>Trasllat a Puerto del Carmen.</b> Instal·lació a l’allotjament i repartiment d’habitacions.</div></div>
+        <div class="trip-time"><time>18.30 h</time><div><b>Compra bàsica.</b> Aigua, esmorzars i productes per a l’allotjament.</div></div>
+        <div class="trip-time"><time>20.30 h</time><div><b>Sopar a Puerto del Carmen.</b> Preferiblement a prop de l’allotjament o al port vell.</div></div>
+      </div>
+
+      <div class="trip-note"><b>Recomanació gastronòmica:</b> peix del dia, formatge canari, papas arrugadas amb mojo o calamars.</div>
+      <div class="trip-note alt"><b>Pla alternatiu:</b> en cas de cansament o retard, sopar senzill a prop de l’allotjament.</div>
+      <div class="trip-comment">Avui l’objectiu és trobar el cotxe, l’allotjament i un bon lloc per brindar per les vacances.</div>
+    </div>
+  `
+},
 /* 23 DE SETEMBRE */
-23:{kind:"trip",icon:"",title:"...",text:``},
+23:{
+  kind:"trip",
+  icon:"🌋",
+  title:"Timanfaya i costa volcànica",
+  richHtml:`
+    <div class="trip-plan">
+      <div class="trip-summary">
+        <div><span>Itinerari</span><b>Puerto del Carmen – Timanfaya – El Golfo – Janubio – Yaiza</b></div>
+        <div><span>Distància</span><b>85–105 km</b></div>
+        <div><span>Conducció</span><b>2–2 h 30 min</b></div>
+        <div><span>Reserva</span><b>Timanfaya</b></div>
+      </div>
+
+      <div class="trip-section">
+        <h4>Matí</h4>
+        <div class="trip-time"><time>8.15 h</time><div>Sortida de Puerto del Carmen.</div></div>
+        <div class="trip-time"><time>9.15 h</time><div><b>Montañas del Fuego.</b> Presenteu-vos 15 minuts abans. La visita principal es fa amb el transport del centre i no requereix excursió a peu.</div></div>
+      </div>
+
+      <div class="trip-section">
+        <h4>Migdia i tarda</h4>
+        <div class="trip-time"><time>12.00 h</time><div>Trasllat a <b>El Golfo</b> i parada al mirador de la llacuna verda.</div></div>
+        <div class="trip-time"><time>13.30 h</time><div>Dinar de peix o arròs a El Golfo.</div></div>
+        <div class="trip-time"><time>15.30 h</time><div>Ruta panoràmica: Charco de los Clicos, Los Hervideros si és obert, Salinas de Janubio i Yaiza.</div></div>
+        <div class="trip-time"><time>17.30 h</time><div>Retorn a Puerto del Carmen i descans.</div></div>
+      </div>
+
+      <div class="trip-note"><b>Recomanació gastronòmica:</b> peix fresc, lapas amb mojo, pop o arròs mariner.</div>
+      <div class="trip-note alt"><b>Pla alternatiu:</b> si Timanfaya té una franja tardana, invertiu l’ordre de la ruta.</div>
+      <div class="trip-comment">Un paisatge gairebé extraterrestre amb un dia sorprenentment tranquil per a les cames.</div>
+    </div>
+  `
+},
 /* 24 DE SETEMBRE */
-24:{kind:"trip",icon:"",title:"...",text:``},
+24:{
+  kind:"trip",
+  icon:"🎨",
+  title:"Jameos del Agua i nord",
+  richHtml:`
+    <div class="trip-plan">
+      <div class="trip-summary">
+        <div><span>Itinerari</span><b>Jameos – Arrieta – Mirador del Río – Haría</b></div>
+        <div><span>Distància</span><b>120–135 km</b></div>
+        <div><span>Conducció</span><b>2 h 45 min–3 h 15 min</b></div>
+        <div><span>Intensitat</span><b>Mitjana</b></div>
+      </div>
+
+      <div class="trip-section">
+        <h4>Planificació</h4>
+        <div class="trip-time"><time>8.45 h</time><div>Sortida cap al nord.</div></div>
+        <div class="trip-time"><time>10.00 h</time><div><b>Jameos del Agua.</b> Visita d’entre una hora i una hora i mitja. Té escales i diferents nivells, però no és una excursió.</div></div>
+        <div class="trip-time"><time>12.00 h</time><div>Ruta curta per Arrieta o Punta Mujeres.</div></div>
+        <div class="trip-time"><time>13.00 h</time><div>Dinar a Arrieta.</div></div>
+        <div class="trip-time"><time>14.45 h</time><div><b>Mirador del Río.</b> Visita d’uns 45 minuts amb vistes sobre La Graciosa.</div></div>
+        <div class="trip-time"><time>16.00 h</time><div>Retorn panoràmic per Yé i Haría, la vall de les mil palmeres.</div></div>
+        <div class="trip-time"><time>18.00 h</time><div>Arribada a Puerto del Carmen.</div></div>
+      </div>
+
+      <div class="trip-note alt"><b>Pla alternatiu:</b> si el mirador està cobert, dediqueu més temps a Arrieta, Haría o Puerto del Carmen.</div>
+      <div class="trip-comment">César Manrique convertint roca volcànica, aigua i llum en una obra d’art.</div>
+    </div>
+  `
+},
 /* 25 DE SETEMBRE */
-25:{kind:"trip",icon:"",title:"...",text:``},
+25:{
+  kind:"trip",
+  icon:"🍷",
+  title:"La Geria i Monumento al Campesino",
+  richHtml:`
+    <div class="trip-plan">
+      <div class="trip-summary">
+        <div><span>Itinerari</span><b>Puerto del Carmen – Uga – La Geria – Mozaga</b></div>
+        <div><span>Distància</span><b>50–70 km</b></div>
+        <div><span>Conducció</span><b>1 h 15 min–1 h 45 min</b></div>
+        <div><span>Intensitat</span><b>Baixa</b></div>
+      </div>
+
+      <div class="trip-section">
+        <h4>Planificació</h4>
+        <div class="trip-time"><time>9.30 h</time><div>Sortida cap a Uga.</div></div>
+        <div class="trip-time"><time>10.30 h</time><div><b>Ruta per La Geria.</b> Recorregut amb cotxe i visita curta o tast en un únic celler.</div></div>
+        <div class="trip-time"><time>12.30 h</time><div><b>Monumento al Campesino.</b> Arquitectura tradicional i obra de César Manrique.</div></div>
+        <div class="trip-time"><time>13.30 h</time><div>Dinar a Mozaga, San Bartolomé o La Geria.</div></div>
+        <div class="trip-time"><time>15.30 h</time><div>Retorn i tarda lliure a Puerto del Carmen.</div></div>
+      </div>
+
+      <div class="trip-note"><b>Conducció responsable:</b> el conductor hauria de limitar o evitar el consum d’alcohol.</div>
+      <div class="trip-note alt"><b>Pla alternatiu:</b> més temps al Monumento al Campesino i ruta en cotxe per San Bartolomé i Tías.</div>
+      <div class="trip-comment">Amb enginy, fins i tot la cendra volcànica pot acabar produint una copa de vi.</div>
+    </div>
+  `
+},
 /* 26 DE SETEMBRE */
-26:{kind:"trip",icon:"️",title:"...",text:``},
+26:{
+  kind:"trip",
+  icon:"🏖️",
+  title:"Playa Blanca i costa de Papagayo",
+  richHtml:`
+    <div class="trip-plan">
+      <div class="trip-summary">
+        <div><span>Itinerari</span><b>Playa Blanca – Marina Rubicón – Papagayo – Puerto Calero</b></div>
+        <div><span>Distància</span><b>75–95 km</b></div>
+        <div><span>Conducció</span><b>1 h 45 min–2 h 15 min</b></div>
+        <div><span>Intensitat</span><b>Baixa</b></div>
+      </div>
+
+      <div class="trip-section">
+        <h4>Planificació</h4>
+        <div class="trip-time"><time>9.30 h</time><div>Sortida cap a Playa Blanca.</div></div>
+        <div class="trip-time"><time>10.30 h</time><div><b>Marina Rubicón.</b> Cafè, port esportiu i botigues.</div></div>
+        <div class="trip-time"><time>11.45 h</time><div><b>Zona de Papagayo.</b> Escolliu una sola platja amb aparcament proper.</div></div>
+        <div class="trip-time"><time>13.30 h</time><div>Dinar a Playa Blanca o Marina Rubicón.</div></div>
+        <div class="trip-time"><time>15.30 h</time><div>Tarda lliure a Playa Blanca.</div></div>
+        <div class="trip-time"><time>17.00 h</time><div>Retorn amb parada opcional a Puerto Calero.</div></div>
+        <div class="trip-time"><time>18.30 h</time><div>Arribada a Puerto del Carmen.</div></div>
+      </div>
+
+      <div class="trip-note"><b>Abans de Papagayo:</b> reviseu pista, contracte del cotxe, restriccions, vent i estat del mar.</div>
+      <div class="trip-note alt"><b>Pla alternatiu:</b> platja urbana asfaltada a Playa Blanca o Salinas de Janubio.</div>
+      <div class="trip-comment">Mar, bon dinar i cap necessitat de demostrar quants quilòmetres podeu caminar.</div>
+    </div>
+  `
+},
 /* 27 DE SETEMBRE */
-27:{kind:"trip",icon:"",title:"...",text:``},
+27:{
+  kind:"trip",
+  icon:"🛍️",
+  title:"Mercat de Teguise",
+  richHtml:`
+    <div class="trip-plan">
+      <div class="trip-summary">
+        <div><span>Itinerari</span><b>Teguise – Nazaret o Costa Teguise</b></div>
+        <div><span>Distància</span><b>70–90 km</b></div>
+        <div><span>Conducció</span><b>1 h 30 min–2 h</b></div>
+        <div><span>Intensitat</span><b>Mitjana</b></div>
+      </div>
+
+      <div class="trip-section">
+        <h4>Planificació</h4>
+        <div class="trip-time"><time>8.00 h</time><div>Sortida cap a la Vila de Teguise.</div></div>
+        <div class="trip-time"><time>8.45 h</time><div>Aparcament als espais habilitats.</div></div>
+        <div class="trip-time"><time>9.00 h</time><div><b>Mercat de Teguise.</b> Artesania, productes locals, gastronomia i records fins a les 11.30 h.</div></div>
+        <div class="trip-time"><time>12.00 h</time><div>Sortida abans de la congestió de tancament.</div></div>
+        <div class="trip-time"><time>12.30 h</time><div>Dinar a Teguise, Nazaret o Costa Teguise.</div></div>
+        <div class="trip-time"><time>15.00 h</time><div>Terrassa i ruta panoràmica per Costa Teguise.</div></div>
+        <div class="trip-time"><time>17.30 h</time><div>Retorn a Puerto del Carmen.</div></div>
+      </div>
+
+      <div class="trip-note"><b>Important:</b> és el dia amb més estona a peu. Delimiteu una zona i feu pauses en una terrassa.</div>
+      <div class="trip-note alt"><b>Pla alternatiu:</b> visitar el mercat només de 9.00 a 10.30 h i marxar cap a Costa Teguise.</div>
+      <div class="trip-comment">Fixeu una hora i un punt de trobada: quatre persones poden desaparèixer molt ràpid entre parades.</div>
+    </div>
+  `
+},
 /* 28 DE SETEMBRE */
-28:{kind:"trip",icon:"",title:"...",text:``},
+28:{
+  kind:"trip",
+  icon:"🌵",
+  title:"Jardín de Cactus i Arrecife",
+  richHtml:`
+    <div class="trip-plan">
+      <div class="trip-summary">
+        <div><span>Itinerari</span><b>Guatiza – Jardín de Cactus – Arrecife</b></div>
+        <div><span>Distància</span><b>75–95 km</b></div>
+        <div><span>Conducció</span><b>1 h 30 min–2 h</b></div>
+        <div><span>Intensitat</span><b>Baixa-mitjana</b></div>
+      </div>
+
+      <div class="trip-section">
+        <h4>Planificació</h4>
+        <div class="trip-time"><time>9.00 h</time><div>Sortida cap a Guatiza.</div></div>
+        <div class="trip-time"><time>10.00 h</time><div><b>Jardín de Cactus.</b> Visita aproximada d’una hora. Podeu limitar-vos al circuit principal.</div></div>
+        <div class="trip-time"><time>11.30 h</time><div>Ruta tranquil·la cap a Arrecife.</div></div>
+        <div class="trip-time"><time>12.15 h</time><div><b>Arrecife.</b> Charco de San Ginés, zona marítima, carrers comercials o una terrassa.</div></div>
+        <div class="trip-time"><time>13.30 h</time><div>Dinar a Arrecife.</div></div>
+        <div class="trip-time"><time>15.30 h</time><div>Retorn a Puerto del Carmen: platja, piscina, compres finals i maletes.</div></div>
+      </div>
+
+      <div class="trip-note"><b>Recordatori:</b> reviseu combustible i condicions de devolució del cotxe.</div>
+      <div class="trip-note alt"><b>Pla alternatiu:</b> suprimir Arrecife i tornar després del Jardín de Cactus.</div>
+      <div class="trip-comment">Deixeu espai a la maleta: acostuma a tornar més ben alimentada que quan va arribar.</div>
+    </div>
+  `
+},
 /* 29 DE SETEMBRE */
-29:{kind:"trip",icon:"",title:"...",text:`Últimes hores a l’illa, recollida i trasllat a l’aeroport. El vol VY2471 surt a les 16.25 h.`},
+29:{
+  kind:"trip",
+  icon:"🛫",
+  title:"Comiat i vol de tornada",
+  richHtml:`
+    <div class="trip-plan">
+      <div class="trip-summary">
+        <div><span>Ruta</span><b>Puerto del Carmen – Aeroport</b></div>
+        <div><span>Distància</span><b>10–15 km</b></div>
+        <div><span>Vol</span><b>VY2471 · 16.25 h</b></div>
+        <div><span>Intensitat</span><b>Baixa</b></div>
+      </div>
+
+      <div class="trip-section">
+        <h4>Planificació</h4>
+        <div class="trip-time"><time>8.30 h</time><div>Esmorzar tranquil.</div></div>
+        <div class="trip-time"><time>9.30 h</time><div>Última estona lliure: cafè, compres o platja.</div></div>
+        <div class="trip-time"><time>11.30 h</time><div>Retorn a l’allotjament, dutxa i tancament de maletes.</div></div>
+        <div class="trip-time"><time>12.30 h</time><div>Revisió de combustible, objectes personals, fotografies del cotxe i targetes d’embarcament.</div></div>
+        <div class="trip-time"><time>13.00 h</time><div>Sortida cap a l’aeroport i devolució del vehicle.</div></div>
+        <div class="trip-time"><time>16.25 h</time><div><b>Vol VY2471 cap a Barcelona.</b> Arribada prevista a les 20.25 h.</div></div>
+      </div>
+
+      <div class="trip-note"><b>Dinar:</b> opció lleugera a l’aeroport o menjar comprat prèviament.</div>
+      <div class="trip-comment">Millor acomiadar Lanzarote amb calma que acabar les vacances amb un esprint final.</div>
+    </div>
+  `
+},
 /* 30 DE SETEMBRE */
 30:{kind:"final",icon:"⭐",title:"Informe final",text:"L’Operació 2209 ha finalitzat. Trieu una única fotografia que resumeixi tot el viatge i envieu-la al grup del CIDS.",mission:true}
 
@@ -3527,7 +3835,7 @@ function resolvedActivity(dateKey,data){
   if(now<phase1){return {...data,title:"Comunicació programada",richHtml:`<div class="phase-wait"><b>DOCUMENT ENCARA CLASSIFICAT</b><br><br>La desclassificació començarà el <b>20 de setembre a les 15.00 h</b>.</div>`};}
   if(now<phase2){return {...data,title:"Coordenades desclassificades",hangman:true,richHtml:`
 <p>El CIDS ha autoritzat la desclassificació progressiva de les coordenades del centre d’operacions.</p>
-<p>Recupereu les tres paraules mitjançant el protocol del penjat. Els accents es revelaran amb la seva lletra base.</p>
+<p>Recupereu les tres paraules mitjançant el protocol del penjat. Teniu un marge màxim de 5 errades.</p>
 <div class="hangman-wrap" id="hangmanGame">
   <div class="hangman-head">
     <b>PROTOCOL DE DESXIFRAT · WHAT3WORDS</b>
