@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#071018">
-<title>Operació 2209 · Calendari de viatge · V87</title>
-<!-- V87: penjat amb bloqueig definitiu fins a les 16.00 h i noves coordenades what3words -->
+<title>Operació 2209 · Calendari de viatge · V88</title>
+<!-- V88: penjat complet en cinc errors, amb bloqueig definitiu fins a les 16.00 h -->
 <style>
 :root{
   --bg:#071018;--panel:#0d1923;--panel2:#111f2b;--ink:#edf3f4;--muted:#91a4ad;
@@ -3536,15 +3536,15 @@ function resolvedActivity(dateKey,data){
   <div class="hangman-main">
     <svg class="hangman-drawing" viewBox="0 0 130 150" aria-label="Dibuix del penjat">
       <line data-stage="1" x1="15" y1="140" x2="115" y2="140"/>
-      <line data-stage="2" x1="35" y1="140" x2="35" y2="15"/>
-      <line data-stage="3" x1="35" y1="15" x2="95" y2="15"/>
-      <line data-stage="4" x1="95" y1="15" x2="95" y2="35"/>
-      <circle data-stage="5" cx="95" cy="49" r="14"/>
-      <line data-stage="6" x1="95" y1="63" x2="95" y2="102"/>
-      <line data-stage="7" x1="95" y1="76" x2="75" y2="91"/>
-      <line data-stage="7" x1="95" y1="76" x2="115" y2="91"/>
-      <line data-stage="8" x1="95" y1="102" x2="78" y2="127"/>
-      <line data-stage="8" x1="95" y1="102" x2="112" y2="127"/>
+      <line data-stage="1" x1="35" y1="140" x2="35" y2="15"/>
+      <line data-stage="1" x1="35" y1="15" x2="95" y2="15"/>
+      <line data-stage="1" x1="95" y1="15" x2="95" y2="35"/>
+      <circle data-stage="2" cx="95" cy="49" r="14"/>
+      <line data-stage="3" x1="95" y1="63" x2="95" y2="102"/>
+      <line data-stage="4" x1="95" y1="76" x2="75" y2="91"/>
+      <line data-stage="4" x1="95" y1="76" x2="115" y2="91"/>
+      <line data-stage="5" x1="95" y1="102" x2="78" y2="127"/>
+      <line data-stage="5" x1="95" y1="102" x2="112" y2="127"/>
     </svg>
     <div>
       <div class="hangman-prefix">///</div>
@@ -3555,7 +3555,8 @@ function resolvedActivity(dateKey,data){
   <div class="hangman-message" id="hangmanMessage">Seleccioneu una lletra per iniciar el desxifrat.</div>
   <div class="hangman-result" id="hangmanResult">
     <div class="coords-label">COORDENADES RECUPERADES</div>
-    <div class="coords-value">///tongada.llimonades.refranyer</div>
+    <div class="coords-value">///ammaccatura.ragazzetto.multe</div>
+	
     <div>La comunicació definitiva es publicarà a les <b>16.00 h</b>.</div>
   </div>
   
@@ -3563,9 +3564,9 @@ function resolvedActivity(dateKey,data){
   return {...data,title:"Destí desclassificat",richHtml:`<div class="intel-kicker" style="text-align:center">OPERACIÓ 2209 · DESTÍ CONFIRMAT</div><div class="reveal-title">LANZAROTE</div><img class="reveal-photo" src="https://turismolanzarote.com/wp-content/uploads/2021/09/Masdache_%C2%A9-Turismo-Lanzarote-1.jpg" alt="Paisatge de Lanzarote"><p style="text-align:center"></p><div class="coords-box"><a class="cids-link" href="https://www.google.com/maps?q=28.93591959649845,-13.61797219098307" target="_blank" rel="noopener">📍 Veure ubicació de l’allotjament a Google Maps</a></div>`};
 }
 
-const HANGMAN_TARGET=["tongada","llimonades","refranyer"];
+const HANGMAN_TARGET=["ammaccatura","ragazzetto","multe"];
 const HANGMAN_STORAGE_KEY="cids2209_hangman_2009";
-const HANGMAN_MAX_ERRORS=8;
+const HANGMAN_MAX_ERRORS=5;
 
 function normalizeHangmanLetter(value){
   return String(value||"")
